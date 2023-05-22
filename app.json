@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "vac-app",
+    "slug": "vac-app",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
