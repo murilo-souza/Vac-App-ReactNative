@@ -6,7 +6,7 @@ export const Container = styled(RectButton)`
   width: 100%;
   height: ${RFValue(45)}px;
 
-  background-color: ${(props) => props.theme.blue600};
+  background-color: ${(props) => props.theme.colors.blue600};
 
   align-items: center;
   justify-content: center;
@@ -15,6 +15,6 @@ export const Container = styled(RectButton)`
 `
 export const Title = styled.Text`
   font-size: ${RFValue(16)}px;
-
-  color: ${(props) => props.theme.white};
+  font-family: ${(props) => props.theme.fonts.semiBold};
+  color: ${(props) => props.theme.colors.white};
 `

@@ -15,7 +15,7 @@ export const Logo = styled.Image`
 `
 
 export const LogoContainer = styled.View`
-  background-color: ${(props) => props.theme.blue600};
+  background-color: ${(props) => props.theme.colors.blue600};
 
   width: ${RFValue(120)}px;
   height: ${RFValue(120)}px;
