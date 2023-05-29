@@ -30,7 +30,7 @@ export const ImgContainer = styled.View`
 `
 export const Border = styled.View`
   border-radius: 5px;
-  border: 1px solid ${(props) => props.theme.colors.gray800};
+  border: 1px solid ${(props) => props.theme.colors.gray400};
 `
 
 export const VaccineImg = styled.Image`
