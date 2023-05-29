@@ -7,6 +7,8 @@ export const Container = styled.View`
   justify-content: center;
 
   padding: 26px;
+
+  background-color: ${(props) => props.theme.colors.gray200};
 `
 
 export const Logo = styled.Image`

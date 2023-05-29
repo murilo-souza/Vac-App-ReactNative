@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import React from 'react'
-import { Signin } from './src/screens/Signin'
+// import { Signin } from './src/screens/Signin'
 import { ThemeProvider } from 'styled-components/native'
 import { theme } from './src/styles/theme'
 import {
@@ -9,6 +9,7 @@ import {
   useFonts,
 } from '@expo-google-fonts/poppins'
 import { ActivityIndicator } from 'react-native'
+import { Home } from './src/screens/Home'
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -17,7 +18,7 @@ export default function App() {
   })
   return (
     <ThemeProvider theme={theme}>
-      {fontsLoaded ? <Signin /> : <ActivityIndicator />}
+      {fontsLoaded ? <Home /> : <ActivityIndicator />}
     </ThemeProvider>
   )
 }
