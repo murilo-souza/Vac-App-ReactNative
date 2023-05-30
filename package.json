@@ -12,6 +12,7 @@
     "@expo-google-fonts/poppins": "^0.2.3",
     "@react-native-masked-view/masked-view": "0.2.8",
     "@react-navigation/bottom-tabs": "^6.5.7",
+    "@react-navigation/native": "^6.1.6",
     "@react-navigation/stack": "^6.3.16",
     "@rocketseat/eslint-config": "^1.2.0",
     "expo": "~48.0.15",
