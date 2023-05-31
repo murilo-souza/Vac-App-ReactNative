@@ -1,11 +1,11 @@
 import React from 'react'
 import { Container } from './styles'
-import { Text } from 'react-native'
+import { TemperatureCard } from '../../components/TemperatureCard'
 
 export function Realtime() {
   return (
     <Container>
-      <Text>Tela de analise real time</Text>
+      <TemperatureCard />
     </Container>
   )
 }

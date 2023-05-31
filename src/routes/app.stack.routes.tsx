@@ -7,8 +7,8 @@ const { Navigator, Screen } = createStackNavigator()
 export function AppStackRoutes() {
   return (
     <Navigator screenOptions={{ headerShown: false }}>
-      <Screen name="Home" component={Home} />
-      <Screen name="Realtime" component={Realtime} />
+      <Screen name="home" component={Home} />
+      <Screen name="realtime" component={Realtime} />
     </Navigator>
   )
 }

@@ -10,8 +10,9 @@ import {
   VaccineImg,
 } from './styles'
 import Vaccine from '../../assets/logo.png'
+import { RectButtonProps } from 'react-native-gesture-handler'
 
-interface VaccineCardProps {
+interface VaccineCardProps extends RectButtonProps {
   batchCode: string
   isRealTime?: boolean
 }
@@ -19,10 +20,11 @@ interface VaccineCardProps {
 export function VaccineCard({
   batchCode,
   isRealTime = false,
+  ...rest
 }: VaccineCardProps) {
   return (
     <Border>
-      <Container>
+      <Container {...rest}>
         <ContentWrapper>
           <ImgContainer>
             <VaccineImg source={Vaccine} />
