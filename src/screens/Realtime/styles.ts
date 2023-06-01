@@ -6,7 +6,4 @@ export const Container = styled.View`
   background-color: ${(props) => props.theme.colors.gray200};
 
   padding: 20px;
-
-  align-items: center;
-  justify-content: center;
 `

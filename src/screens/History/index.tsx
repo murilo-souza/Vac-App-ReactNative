@@ -1,8 +1,9 @@
 import React from 'react'
-import { Container } from './styles'
-import { Text } from 'react-native'
+import { Container, Selector } from './styles'
 import { StatusBar } from 'expo-status-bar'
 import { HeaderHome } from '../../components/HeaderHome'
+import { VaccineCard } from '../../components/VaccineCard'
+import { DateSelecter } from '../../components/DateSelecter'
 
 export function History() {
   return (
@@ -10,7 +11,10 @@ export function History() {
       <StatusBar translucent style="light" />
       <HeaderHome />
       <Container>
-        <Text>History screen</Text>
+        <Selector>
+          <DateSelecter />
+        </Selector>
+        <VaccineCard batchCode="LXT2343767" />
       </Container>
     </>
   )
