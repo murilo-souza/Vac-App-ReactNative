@@ -12,6 +12,8 @@ export const Container = styled.View`
   justify-content: space-between;
 
   flex-direction: row;
+
+  background-color: ${(props) => props.theme.colors.white};
 `
 export const LeftContent = styled.View`
   flex-direction: row;
@@ -44,5 +46,5 @@ export const Brick = styled.View`
 
   margin-right: 10px;
 
-  border-radius: 5px 0 0 5px;
+  overflow: hidden;
 `

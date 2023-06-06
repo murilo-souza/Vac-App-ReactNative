@@ -1,10 +1,15 @@
 import React from 'react'
-import { Container, Title } from './styles'
+import { Container, Flag, Title } from './styles'
 import { BorderlessButton } from 'react-native-gesture-handler'
 import { useTheme } from 'styled-components/native'
 import { ArrowLeft } from 'phosphor-react-native'
 
-export function HeaderFocus() {
+interface HeaderProps {
+  title: string
+  isRealTime: boolean
+}
+
+export function HeaderFocus({ title, isRealTime }: HeaderProps) {
   const theme = useTheme()
 
   return (
@@ -12,7 +17,8 @@ export function HeaderFocus() {
       <BorderlessButton>
         <ArrowLeft size={32} color={theme.colors.white} />
       </BorderlessButton>
-      <Title>Lote LXTEGA8765</Title>
+      <Title>Lote {title}</Title>
+      {isRealTime && <Flag>Tempo{`\n`}real</Flag>}
     </Container>
   )
 }

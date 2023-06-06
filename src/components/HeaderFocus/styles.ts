@@ -23,3 +23,11 @@ export const Title = styled.Text`
 
   color: ${(props) => props.theme.colors.gray50};
 `
+export const Flag = styled.Text`
+  font-size: ${RFValue(16)}px;
+  font-family: ${(props) => props.theme.fonts.regular};
+
+  color: ${(props) => props.theme.colors.white};
+
+  text-align: center;
+`
