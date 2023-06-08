@@ -6,10 +6,10 @@ import { ArrowLeft } from 'phosphor-react-native'
 
 interface HeaderProps {
   title: string
-  isRealTime: boolean
+  isRealTime?: boolean
 }
 
-export function HeaderFocus({ title, isRealTime }: HeaderProps) {
+export function HeaderFocus({ title, isRealTime = false }: HeaderProps) {
   const theme = useTheme()
 
   return (

@@ -7,7 +7,7 @@ import { LineChart } from 'react-native-chart-kit'
 import { useTheme } from 'styled-components/native'
 import { RFValue } from 'react-native-responsive-fontsize'
 
-export function Realtime() {
+export function TemperatureHistory() {
   const theme = useTheme()
 
   return (
