@@ -13,7 +13,7 @@ export function TemperatureHistory() {
   return (
     <>
       <StatusBar translucent style="light" />
-      <HeaderFocus title="LXTH421651" isRealTime />
+      <HeaderFocus title="LXTH421651" />
       <Container>
         <ChartContainer>
           <LineChart

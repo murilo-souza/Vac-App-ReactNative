@@ -1,10 +1,10 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { useTheme } from 'styled-components/native'
 import { CircleWavyQuestion, House, Notepad } from 'phosphor-react-native'
-import { AppStackRoutes } from './app.stack.routes'
 import { IconContainer } from './styles'
-import { History } from '../screens/History'
 import { FAQ } from '../screens/FAQ'
+import { HistoryStackRoutes } from './StackGroup/history.stack.routes'
+import { HomeStackRoutes } from './StackGroup/home.stack.routes'
 
 const { Navigator, Screen } = createBottomTabNavigator()
 
@@ -13,7 +13,6 @@ export function AppTabRoutes() {
 
   return (
     <Navigator
-      initialRouteName="Home"
       screenOptions={{
         tabBarBadgeStyle: {
           backgroundColor: theme.colors.red600,
@@ -35,7 +34,7 @@ export function AppTabRoutes() {
     >
       <Screen
         name="History"
-        component={History}
+        component={HistoryStackRoutes}
         options={{
           tabBarIcon: ({ color, focused }) => (
             <>
@@ -53,7 +52,7 @@ export function AppTabRoutes() {
 
       <Screen
         name="Home"
-        component={AppStackRoutes}
+        component={HomeStackRoutes}
         options={{
           tabBarIcon: ({ color, focused }) => (
             <>
