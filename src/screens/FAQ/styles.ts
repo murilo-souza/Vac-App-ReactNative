@@ -1,4 +1,3 @@
-import { RectButton } from 'react-native-gesture-handler'
 import { RFValue } from 'react-native-responsive-fontsize'
 import styled, { css } from 'styled-components/native'
 
@@ -17,9 +16,10 @@ export const Container = styled.View`
 export const CollapseStroke = styled.View`
   border: 1px solid ${(props) => props.theme.colors.gray400};
   border-radius: 5px;
+  margin-bottom: 20px;
 `
 
-export const CollapseBox = styled(RectButton)<CollapseProps>`
+export const CollapseBox = styled.TouchableOpacity<CollapseProps>`
   background-color: ${(props) => props.theme.colors.white};
 
   border-radius: 5px;
