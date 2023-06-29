@@ -13,6 +13,7 @@ export function AppTabRoutes() {
 
   return (
     <Navigator
+      initialRouteName="Home"
       screenOptions={{
         tabBarBadgeStyle: {
           backgroundColor: theme.colors.red600,
