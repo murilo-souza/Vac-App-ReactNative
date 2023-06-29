@@ -18,6 +18,17 @@ export function FAQ() {
   const [collapsed, setCollapsed] = useState(true)
   const theme = useTheme()
 
+  const [expandedItems, setExpandedItems] = useState([])
+
+  // Função para manipular a expansão ou colapso de um item
+  const toggleItem = (itemId: string) => {
+    if (expandedItems.includes(itemId)) {
+      setExpandedItems(expandedItems.filter((id) => id !== itemId))
+    } else {
+      setExpandedItems([...expandedItems, itemId])
+    }
+  }
+
   const data = [
     {
       id: '1',
@@ -45,11 +56,6 @@ export function FAQ() {
     },
   ]
 
-  function handleCollapse() {
-    setCollapsed(!collapsed)
-    console.log(collapsed)
-  }
-
   return (
     <>
       <StatusBar translucent style="light" />
@@ -58,26 +64,33 @@ export function FAQ() {
         <FlatList
           data={data}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <CollapseStroke>
-              <CollapseBox onPress={handleCollapse} expanded={!collapsed}>
-                <Wrapper>
-                  <Title expanded={!collapsed}>{item.title}</Title>
-                  <CaretDown
-                    size={32}
-                    color={
-                      collapsed ? theme.colors.gray800 : theme.colors.white
-                    }
-                  />
-                </Wrapper>
-                <Collapsible collapsed={collapsed}>
-                  <Information expanded={!collapsed}>
-                    {item.information}
-                  </Information>
-                </Collapsible>
-              </CollapseBox>
-            </CollapseStroke>
-          )}
+          renderItem={({ item }) => {
+            const isExpanded = expandedItems.includes(item.id)
+
+            return (
+              <CollapseStroke>
+                <CollapseBox
+                  onPress={() => toggleItem(item.id)}
+                  expanded={isExpanded}
+                >
+                  <Wrapper>
+                    <Title expanded={isExpanded}>{item.title}</Title>
+                    <CaretDown
+                      size={32}
+                      color={
+                        !isExpanded ? theme.colors.gray800 : theme.colors.white
+                      }
+                    />
+                  </Wrapper>
+                  <Collapsible collapsed={!isExpanded}>
+                    <Information expanded={isExpanded}>
+                      {item.information}
+                    </Information>
+                  </Collapsible>
+                </CollapseBox>
+              </CollapseStroke>
+            )
+          }}
         />
       </Container>
     </>
