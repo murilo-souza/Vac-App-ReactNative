@@ -14,6 +14,8 @@ export const Container = styled.View`
   flex-direction: row;
 
   background-color: ${(props) => props.theme.colors.white};
+
+  margin-bottom: 20px;
 `
 export const LeftContent = styled.View`
   flex-direction: row;

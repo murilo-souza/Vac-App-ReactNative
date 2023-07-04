@@ -6,9 +6,43 @@ import { StatusBar } from 'expo-status-bar'
 import { LineChart } from 'react-native-chart-kit'
 import { useTheme } from 'styled-components/native'
 import { RFValue } from 'react-native-responsive-fontsize'
+import { FlatList } from 'react-native'
 
 export function Realtime() {
   const theme = useTheme()
+
+  const data = [
+    {
+      id: '1',
+      temperature: 10,
+      time: '14h50',
+    },
+    {
+      id: '2',
+      temperature: 10,
+      time: '14h50',
+    },
+    {
+      id: '3',
+      temperature: 10,
+      time: '14h50',
+    },
+    {
+      id: '4',
+      temperature: 10,
+      time: '14h50',
+    },
+    {
+      id: '5',
+      temperature: 10,
+      time: '14h50',
+    },
+    {
+      id: '6',
+      temperature: 10,
+      time: '14h50',
+    },
+  ]
 
   return (
     <>
@@ -85,11 +119,16 @@ export function Realtime() {
           />
         </ChartContainer>
         <TemperatureList>
-          <TemperatureCard />
-          <TemperatureCard />
-          <TemperatureCard />
-          <TemperatureCard />
-          <TemperatureCard />
+          <FlatList
+            data={data}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => (
+              <TemperatureCard
+                temperature={item.temperature}
+                time={item.time}
+              />
+            )}
+          />
         </TemperatureList>
       </Container>
     </>

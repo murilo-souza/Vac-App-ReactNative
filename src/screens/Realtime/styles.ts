@@ -9,13 +9,7 @@ export const Container = styled.View`
 `
 
 export const TemperatureList = styled.View`
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 20px;
-
-  margin-bottom: 60px;
+  margin-bottom: 0px;
 `
 
 export const ChartContainer = styled.ScrollView`
