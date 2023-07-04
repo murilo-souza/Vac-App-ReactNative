@@ -15,9 +15,7 @@ import Collapsible from 'react-native-collapsible'
 import { FlatList } from 'react-native'
 
 export function FAQ() {
-  const [collapsed, setCollapsed] = useState(true)
   const theme = useTheme()
-
   const [expandedItems, setExpandedItems] = useState([])
 
   // Função para manipular a expansão ou colapso de um item

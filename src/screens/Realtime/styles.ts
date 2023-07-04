@@ -18,7 +18,7 @@ export const TemperatureList = styled.View`
   margin-bottom: 60px;
 `
 
-export const ChartContainer = styled.View`
+export const ChartContainer = styled.ScrollView`
   margin-bottom: 20px;
 `
 

@@ -15,10 +15,29 @@ export function Realtime() {
       <StatusBar translucent style="light" />
       <HeaderFocus title="LXTH421651" isRealTime />
       <Container>
-        <ChartContainer>
+        <ChartContainer horizontal>
           <LineChart
             data={{
-              labels: ['17h30', '17h35', '17h40', '17h45', '17h45'],
+              labels: [
+                '17h30',
+                '17h35',
+                '17h40',
+                '17h45',
+                '17h45',
+                '17h45',
+                '17h45',
+                '17h45',
+                '17h45',
+                '17h30',
+                '17h35',
+                '17h40',
+                '17h45',
+                '17h45',
+                '17h45',
+                '17h45',
+                '17h45',
+                '17h45',
+              ],
               datasets: [
                 {
                   data: [
@@ -38,7 +57,7 @@ export function Realtime() {
                 },
               ],
             }}
-            width={RFValue(360)} // from react-native
+            width={RFValue(900)} // from react-native
             height={220}
             yAxisSuffix="°C"
             yAxisInterval={1} // optional, defaults to 1
