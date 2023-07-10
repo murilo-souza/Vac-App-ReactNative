@@ -10,6 +10,8 @@ export const Container = styled.View`
 
 export const TemperatureList = styled.View`
   margin-bottom: 0px;
+
+  height: 300px;
 `
 
 export const ChartContainer = styled.ScrollView`
