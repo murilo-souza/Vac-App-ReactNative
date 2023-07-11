@@ -15,32 +15,32 @@ export function Realtime() {
     {
       id: '1',
       temperature: 10,
-      time: '14h50',
+      time: '1h55',
     },
     {
       id: '2',
       temperature: 10,
-      time: '14h50',
+      time: '13h00',
     },
     {
       id: '3',
       temperature: 10,
-      time: '14h50',
+      time: '13h05',
     },
     {
       id: '4',
       temperature: 10,
-      time: '14h50',
+      time: '13h10',
     },
     {
       id: '5',
       temperature: 10,
-      time: '14h50',
+      time: '13h15',
     },
     {
       id: '6',
       temperature: 10,
-      time: '14h50',
+      time: '13h20',
     },
   ]
 
@@ -52,26 +52,9 @@ export function Realtime() {
         <ChartContainer horizontal>
           <LineChart
             data={{
-              labels: [
-                '17h30',
-                '17h35',
-                '17h40',
-                '17h45',
-                '17h45',
-                '17h45',
-                '17h45',
-                '17h45',
-                '17h45',
-                '17h30',
-                '17h35',
-                '17h40',
-                '17h45',
-                '17h45',
-                '17h45',
-                '17h45',
-                '17h45',
-                '17h45',
-              ],
+              labels: data.map((item) => {
+                return item.time
+              }),
               datasets: [
                 {
                   data: [
