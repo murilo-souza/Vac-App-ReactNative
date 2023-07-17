@@ -11,15 +11,11 @@ export const Container = styled.View`
 export const TemperatureList = styled.View`
   margin-bottom: 0px;
 
-  height: 300px;
+  height: 370px;
+
+  padding-bottom: 60px;
 `
 
 export const ChartContainer = styled.ScrollView`
   margin-bottom: 20px;
-  z-index: 1;
-`
-
-export const Limiter = styled.View`
-  width: 100%;
-  height: 100px;
 `

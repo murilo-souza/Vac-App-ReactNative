@@ -15,7 +15,7 @@ export function Realtime() {
     {
       id: '1',
       temperature: 10,
-      time: '1h55',
+      time: '12h55',
     },
     {
       id: '2',
@@ -39,6 +39,31 @@ export function Realtime() {
     },
     {
       id: '6',
+      temperature: 10,
+      time: '13h20',
+    },
+    {
+      id: '7',
+      temperature: 10,
+      time: '13h20',
+    },
+    {
+      id: '8',
+      temperature: 10,
+      time: '13h20',
+    },
+    {
+      id: '9',
+      temperature: 10,
+      time: '13h20',
+    },
+    {
+      id: '10',
+      temperature: 10,
+      time: '13h20',
+    },
+    {
+      id: '11',
       temperature: 10,
       time: '13h20',
     },

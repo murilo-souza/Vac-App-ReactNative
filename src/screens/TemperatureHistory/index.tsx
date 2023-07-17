@@ -6,19 +6,95 @@ import { StatusBar } from 'expo-status-bar'
 import { LineChart } from 'react-native-chart-kit'
 import { useTheme } from 'styled-components/native'
 import { RFValue } from 'react-native-responsive-fontsize'
+import { FlatList } from 'react-native'
 
 export function TemperatureHistory() {
   const theme = useTheme()
+
+  const data = [
+    {
+      id: '1',
+      temperature: 10,
+      time: '1h55',
+    },
+    {
+      id: '2',
+      temperature: 10,
+      time: '13h00',
+    },
+    {
+      id: '3',
+      temperature: 10,
+      time: '13h05',
+    },
+    {
+      id: '4',
+      temperature: 10,
+      time: '13h10',
+    },
+    {
+      id: '5',
+      temperature: 10,
+      time: '13h15',
+    },
+    {
+      id: '6',
+      temperature: 10,
+      time: '13h20',
+    },
+    {
+      id: '7',
+      temperature: 10,
+      time: '13h20',
+    },
+    {
+      id: '8',
+      temperature: 10,
+      time: '13h20',
+    },
+    {
+      id: '9',
+      temperature: 10,
+      time: '13h20',
+    },
+    {
+      id: '10',
+      temperature: 10,
+      time: '13h20',
+    },
+    {
+      id: '11',
+      temperature: 10,
+      time: '13h20',
+    },
+    {
+      id: '12',
+      temperature: 10,
+      time: '13h25',
+    },
+    {
+      id: '13',
+      temperature: 10,
+      time: '13h30',
+    },
+    {
+      id: '14',
+      temperature: 10,
+      time: '13h35',
+    },
+  ]
 
   return (
     <>
       <StatusBar translucent style="light" />
       <HeaderFocus title="LXTH421651" />
       <Container>
-        <ChartContainer>
+        <ChartContainer horizontal>
           <LineChart
             data={{
-              labels: ['17h30', '17h35', '17h40', '17h45', '17h45'],
+              labels: data.map((item) => {
+                return item.time
+              }),
               datasets: [
                 {
                   data: [
@@ -38,7 +114,7 @@ export function TemperatureHistory() {
                 },
               ],
             }}
-            width={RFValue(360)} // from react-native
+            width={RFValue(data.length * 100)} // from react-native
             height={220}
             yAxisSuffix="°C"
             yAxisInterval={1} // optional, defaults to 1
@@ -66,11 +142,16 @@ export function TemperatureHistory() {
           />
         </ChartContainer>
         <TemperatureList>
-          <TemperatureCard />
-          <TemperatureCard />
-          <TemperatureCard />
-          <TemperatureCard />
-          <TemperatureCard />
+          <FlatList
+            data={data}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => (
+              <TemperatureCard
+                temperature={item.temperature}
+                time={item.time}
+              />
+            )}
+          />
         </TemperatureList>
       </Container>
     </>
