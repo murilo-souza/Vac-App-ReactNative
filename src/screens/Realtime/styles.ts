@@ -11,7 +11,7 @@ export const Container = styled.View`
 export const TemperatureList = styled.View`
   margin-bottom: 0px;
 
-  height: 370px;
+  height: 380px;
 
   padding-bottom: 60px;
 `
