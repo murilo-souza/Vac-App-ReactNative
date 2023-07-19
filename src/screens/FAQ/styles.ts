@@ -10,7 +10,7 @@ export const Container = styled.View`
 
   background-color: ${(props) => props.theme.colors.gray200};
 
-  padding: 20px;
+  padding: 20px 20px 90px 20px;
 `
 
 export const CollapseStroke = styled.View`
