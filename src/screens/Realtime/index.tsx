@@ -67,6 +67,26 @@ export function Realtime() {
       temperature: 10,
       time: '13h20',
     },
+    {
+      id: '12',
+      temperature: 10,
+      time: '13h30',
+    },
+    {
+      id: '13',
+      temperature: 10,
+      time: '13h30',
+    },
+    {
+      id: '14',
+      temperature: 10,
+      time: '13h30',
+    },
+    {
+      id: '15',
+      temperature: 10,
+      time: '14h30',
+    },
   ]
 
   return (
@@ -110,7 +130,7 @@ export function Realtime() {
                 },
               ],
             }}
-            width={RFValue(900)} // from react-native
+            width={RFValue(data.length * 100)} // from react-native
             height={220}
             yAxisSuffix="°C"
             yAxisInterval={1} // optional, defaults to 1
