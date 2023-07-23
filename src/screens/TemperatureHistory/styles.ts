@@ -18,4 +18,5 @@ export const TemperatureList = styled.View`
 
 export const ChartContainer = styled.ScrollView`
   margin-bottom: 20px;
+  background-color: ${(props) => props.theme.colors.white};
 `
