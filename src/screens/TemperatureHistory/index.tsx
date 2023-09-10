@@ -15,72 +15,82 @@ export function TemperatureHistory() {
     {
       id: '1',
       temperature: 10,
-      time: '1h55',
+      time: '12h55',
     },
     {
       id: '2',
-      temperature: 10,
+      temperature: 15,
       time: '13h00',
     },
     {
       id: '3',
-      temperature: 10,
+      temperature: 13,
       time: '13h05',
     },
     {
       id: '4',
-      temperature: 10,
+      temperature: 20,
       time: '13h10',
     },
     {
       id: '5',
-      temperature: 10,
+      temperature: 30,
       time: '13h15',
     },
     {
       id: '6',
-      temperature: 10,
+      temperature: 27,
       time: '13h20',
     },
     {
       id: '7',
-      temperature: 10,
+      temperature: 18,
       time: '13h20',
     },
     {
       id: '8',
-      temperature: 10,
+      temperature: 24,
       time: '13h20',
     },
     {
       id: '9',
-      temperature: 10,
+      temperature: 36,
       time: '13h20',
     },
     {
       id: '10',
-      temperature: 10,
+      temperature: 8,
       time: '13h20',
     },
     {
       id: '11',
-      temperature: 10,
+      temperature: 2,
       time: '13h20',
     },
     {
       id: '12',
-      temperature: 10,
-      time: '13h25',
+      temperature: 4,
+      time: '13h30',
     },
     {
       id: '13',
-      temperature: 10,
+      temperature: 7,
       time: '13h30',
     },
     {
       id: '14',
+      temperature: 50,
+      time: '13h30',
+    },
+    {
+      id: '15',
       temperature: 10,
-      time: '13h35',
+      time: '14h30',
+    },
+    {
+      id: '16',
+      temperature: -2,
+      time: '14h30',
     },
   ]
 
@@ -97,20 +107,9 @@ export function TemperatureHistory() {
               }),
               datasets: [
                 {
-                  data: [
-                    Math.random(),
-                    Math.random(),
-                    Math.random(),
-                    Math.random(),
-                    Math.random(),
-                    Math.random(),
-                    Math.random(),
-                    Math.random(),
-                    Math.random(),
-                    Math.random(),
-                    Math.random(),
-                    Math.random(),
-                  ],
+                  data: data.map((item) => {
+                    return item.temperature
+                  }),
                 },
               ],
             }}
