@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "300523361902",
+    "firebase_url": "https://vaccine-71554-default-rtdb.firebaseio.com",
+    "project_id": "vaccine-71554",
+    "storage_bucket": "vaccine-71554.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:300523361902:android:147b743bad4d4087aef87f",
+        "android_client_info": {
+          "package_name": "com.vacapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjjCrbyAOufhSSjLEMGoOiikEGbB0yL7c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

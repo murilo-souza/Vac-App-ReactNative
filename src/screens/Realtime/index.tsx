@@ -112,6 +112,9 @@ export function Realtime() {
             height={220}
             yAxisSuffix="°C"
             yAxisInterval={1} // optional, defaults to 1
+            // renderDotContent={({ y }) => {
+            // return <Text>{y}</Text>
+            // }}
             chartConfig={{
               backgroundColor: theme.colors.white,
               backgroundGradientFrom: theme.colors.white,
