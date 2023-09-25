@@ -34,33 +34,6 @@ export function FAQ() {
     }
   }
 
-  // const data = [
-  //   {
-  //     id: '1',
-  //     title: 'Question 1',
-  //     information:
-  //       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Debitis soluta unde fugiat eum, quis voluptatibus id aliquam est impedit ex repudiandae hic quo fugit perferendis sunt vel officiis obcaecati odio.',
-  //   },
-  //   {
-  //     id: '2',
-  //     title: 'Question 2',
-  //     information:
-  //       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Debitis soluta unde fugiat eum, quis voluptatibus id aliquam est impedit ex repudiandae hic quo fugit perferendis sunt vel officiis obcaecati odio.',
-  //   },
-  //   {
-  //     id: '3',
-  //     title: 'Question 3',
-  //     information:
-  //       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Debitis soluta unde fugiat eum, quis voluptatibus id aliquam est impedit ex repudiandae hic quo fugit perferendis sunt vel officiis obcaecati odio.',
-  //   },
-  //   {
-  //     id: '4',
-  //     title: 'Question 4',
-  //     information:
-  //       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Debitis soluta unde fugiat eum, quis voluptatibus id aliquam est impedit ex repudiandae hic quo fugit perferendis sunt vel officiis obcaecati odio.',
-  //   },
-  // ]
-
   useEffect(() => {
     const question = firestore()
       .collection('FAQ')

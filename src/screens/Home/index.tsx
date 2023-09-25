@@ -4,9 +4,11 @@ import { HeaderHome } from '../../components/HeaderHome'
 import { StatusBar } from 'expo-status-bar'
 import { VaccineCard } from '../../components/VaccineCard'
 import { useNavigation } from '@react-navigation/native'
+import { useDevice } from '../../hook/useDevice'
 
 export function Home() {
   const navigation = useNavigation()
+  const { deviceData } = useDevice()
 
   function handleRealtime() {
     navigation.navigate('realtime')
@@ -18,7 +20,7 @@ export function Home() {
       <HeaderHome />
       <Container>
         <VaccineCard
-          batchCode="LXTS26367"
+          batchCode={deviceData.timestamp}
           isRealTime
           onPress={handleRealtime}
         />

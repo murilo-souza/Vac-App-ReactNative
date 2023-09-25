@@ -9,6 +9,7 @@ import {
 } from '@expo-google-fonts/poppins'
 import { ActivityIndicator } from 'react-native'
 import { Routes } from './src/routes'
+import { DeviceContextProvider } from './src/hook/useDevice'
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -17,7 +18,9 @@ export default function App() {
   })
   return (
     <ThemeProvider theme={theme}>
-      {fontsLoaded ? <Routes /> : <ActivityIndicator />}
+      <DeviceContextProvider>
+        {fontsLoaded ? <Routes /> : <ActivityIndicator />}
+      </DeviceContextProvider>
     </ThemeProvider>
   )
 }
