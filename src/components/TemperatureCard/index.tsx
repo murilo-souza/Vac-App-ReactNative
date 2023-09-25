@@ -13,7 +13,7 @@ export function TemperatureCard({ time, temperature }: TemperatureCardProps) {
         <Brick />
         <Time>{time}</Time>
       </LeftContent>
-      <Temperature>{temperature} °C</Temperature>
+      <Temperature>{temperature.toFixed(2)} °C</Temperature>
     </Container>
   )
 }

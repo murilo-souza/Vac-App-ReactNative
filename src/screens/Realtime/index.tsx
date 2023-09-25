@@ -15,30 +15,27 @@ export function Realtime() {
 
   return (
     <>
-      {/* <StatusBar translucent style="light" />
+      <StatusBar translucent style="light" />
       <HeaderFocus title="LXTH421651" isRealTime />
       <Container>
         <ChartContainer horizontal>
           <LineChart
             data={{
-              labels: deviceData.map((item) => {
+              labels: deviceData.slice(0, 100).map((item) => {
                 return item.timestamp
               }),
               datasets: [
                 {
-                  data: deviceData.map((item) => {
+                  data: deviceData.slice(0, 100).map((item) => {
                     return item.temperature
                   }),
                 },
               ],
             }}
-            width={RFValue(deviceData.length * 100)} // from react-native
+            width={RFValue(deviceData.slice(0, 100).length * 100)} // from react-native
             height={220}
             yAxisSuffix="°C"
-            yAxisInterval={1} // optional, defaults to 1
-            // renderDotContent={({ y }) => {
-            // return <Text>{y}</Text>
-            // }}
+            yAxisInterval={1}
             chartConfig={{
               backgroundColor: theme.colors.white,
               backgroundGradientFrom: theme.colors.white,
@@ -61,20 +58,20 @@ export function Realtime() {
               borderRadius: 5,
             }}
           />
-        </ChartContainer> */}
-      {/* <TemperatureList>
-        <FlatList
-          data={deviceData}
-          keyExtractor={(item) => item.timestamp}
-          renderItem={({ item }) => (
-            <TemperatureCard
-              temperature={item.temperature}
-              time={item.timestamp}
-            />
-          )}
-        />
-      </TemperatureList> */}
-      {/* </Container> */}
+        </ChartContainer>
+        <TemperatureList>
+          <FlatList
+            data={deviceData}
+            keyExtractor={(item) => item.timestamp}
+            renderItem={({ item }) => (
+              <TemperatureCard
+                temperature={item.temperature}
+                time={item.timestamp}
+              />
+            )}
+          />
+        </TemperatureList>
+      </Container>
     </>
   )
 }

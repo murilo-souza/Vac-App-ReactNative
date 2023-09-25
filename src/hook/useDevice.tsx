@@ -16,7 +16,7 @@ interface DeviceDataProps {
 }
 
 interface DeviceContextData {
-  deviceData: DeviceDataProps
+  deviceData: DeviceDataProps[]
 }
 
 interface ContextProviderProps {
@@ -26,14 +26,27 @@ interface ContextProviderProps {
 export const DeviceContext = createContext({} as DeviceContextData)
 
 export function DeviceContextProvider({ children }: ContextProviderProps) {
-  const [deviceData, setDeviceData] = useState<DeviceDataProps>(
-    {} as DeviceDataProps,
-  )
+  const [deviceData, setDeviceData] = useState<DeviceDataProps[]>([])
 
-  // useEffect(() => {
-  //   const data = database()
-  //     .ref('/UsersData/9ifemwpVrQSW9S6CYe6DCgcNIIf1/readings').on('value')
-  // }, [])
+  useEffect(() => {
+    database()
+      .ref('/UsersData/9ifemwpVrQSW9S6CYe6DCgcNIIf1/readings')
+      .on('value', (snapshot) => {
+        if (snapshot.exists()) {
+          const dataArray = []
+          snapshot.forEach((childSnapshot) => {
+            const data = childSnapshot.val()
+            dataArray.push({ ...data })
+            return data
+          })
+          const filteredData = dataArray.filter(
+            (item: DeviceDataProps) => item.temperature !== 85,
+          )
+          const reverseData = filteredData.reverse()
+          setDeviceData(reverseData)
+        }
+      })
+  }, [])
 
   return (
     <DeviceContext.Provider value={{ deviceData }}>
