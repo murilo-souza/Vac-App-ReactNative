@@ -8,6 +8,7 @@ import { useTheme } from 'styled-components/native'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { FlatList } from 'react-native'
 import { useDevice } from '../../hook/useDevice'
+import { timeFormat } from '../../utils/timeFormat'
 
 export function Realtime() {
   const theme = useTheme()
@@ -22,7 +23,7 @@ export function Realtime() {
           <LineChart
             data={{
               labels: deviceData.slice(0, 100).map((item) => {
-                return item.timestamp
+                return timeFormat(item.timestamp)
               }),
               datasets: [
                 {
@@ -32,7 +33,7 @@ export function Realtime() {
                 },
               ],
             }}
-            width={RFValue(deviceData.slice(0, 100).length * 100)} // from react-native
+            width={RFValue(deviceData.slice(0, 100).length * 50)} // from react-native
             height={220}
             yAxisSuffix="°C"
             yAxisInterval={1}
@@ -66,7 +67,7 @@ export function Realtime() {
             renderItem={({ item }) => (
               <TemperatureCard
                 temperature={item.temperature}
-                time={item.timestamp}
+                time={timeFormat(item.timestamp)}
               />
             )}
           />
