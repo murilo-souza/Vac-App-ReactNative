@@ -54,7 +54,7 @@ export function TemperatureHistory() {
               width={
                 filteredDate.length > 100
                   ? filteredDate.slice(0, 100).length * 50
-                  : filteredDate.length * 50
+                  : filteredDate.length * 100
               } // from react-native
               height={220}
               yAxisSuffix="°C"

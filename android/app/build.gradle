@@ -113,9 +113,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace 'com.vacapp'
+    namespace 'com.murilosouza.vac'
     defaultConfig {
-        applicationId 'com.vacapp'
+        applicationId 'com.murilosouza.vac'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

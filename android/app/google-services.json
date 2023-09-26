@@ -8,12 +8,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:300523361902:android:147b743bad4d4087aef87f",
+        "mobilesdk_app_id": "1:300523361902:android:d829ec6f10fe9a86aef87f",
         "android_client_info": {
-          "package_name": "com.vacapp"
+          "package_name": "com.murilosouza.vac"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "300523361902-0b3aaevk8q1r2bjdj645cfvj7k2a7fh4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBjjCrbyAOufhSSjLEMGoOiikEGbB0yL7c"
@@ -21,7 +26,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "300523361902-0b3aaevk8q1r2bjdj645cfvj7k2a7fh4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "300523361902-e0ri96mqmqbbicsogdvg9jhpe4cv9b25.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.murilosouza.vac"
+              }
+            }
+          ]
         }
       }
     }

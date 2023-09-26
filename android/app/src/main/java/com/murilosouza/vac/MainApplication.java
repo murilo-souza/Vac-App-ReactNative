@@ -1,4 +1,4 @@
-package com.vacapp;
+package com.murilosouza.vac;
 
 import android.app.Application;
 import android.content.res.Configuration;

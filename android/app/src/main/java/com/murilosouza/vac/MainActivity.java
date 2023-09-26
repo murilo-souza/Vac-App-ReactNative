@@ -1,4 +1,4 @@
-package com.vacapp;
+package com.murilosouza.vac;
 
 import android.os.Build;
 import android.os.Bundle;
