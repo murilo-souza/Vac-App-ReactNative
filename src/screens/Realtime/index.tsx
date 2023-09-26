@@ -14,7 +14,6 @@ export function Realtime() {
   const { deviceData } = useDevice()
 
   const currentDate = new Date()
-
   const filteredDate = deviceData.filter((item) => {
     const timestampNumber = parseInt(item.timestamp, 10)
     const dateUTC = new Date(timestampNumber * 1000)
@@ -35,12 +34,12 @@ export function Realtime() {
           <ChartContainer horizontal>
             <LineChart
               data={{
-                labels: filteredDate.map((item) => {
+                labels: filteredDate.slice(0, 100).map((item) => {
                   return timeFormat(item.timestamp)
                 }),
                 datasets: [
                   {
-                    data: filteredDate.map((item) => {
+                    data: filteredDate.slice(0, 100).map((item) => {
                       return item.temperature
                     }),
                   },

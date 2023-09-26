@@ -1,24 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   Container,
   ContainerSelector,
-  Date,
+  DateString,
   IconButton,
   Selector,
 } from './styles'
+import { useTheme } from 'styled-components/native'
 import { StatusBar } from 'expo-status-bar'
 import { HeaderHome } from '../../components/HeaderHome'
 import { VaccineCard } from '../../components/VaccineCard'
-import { useNavigation, useTheme } from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native'
 import { dateFormat } from '../../utils/dateFormat'
 import { CaretLeft, CaretRight } from 'phosphor-react-native'
+import { addDays, subDays } from 'date-fns'
 
 export function History() {
-  const navigation = useNavigation()
   const theme = useTheme()
+  const navigation = useNavigation()
 
-  function handleTemperatureHistory() {
-    navigation.navigate('temperatureHistory')
+  const [selectedDate, setSelectedDate] = useState(new Date())
+
+  function handleTemperatureHistory(selectedDate: Date) {
+    navigation.navigate('temperatureHistory', { selectedDate })
+  }
+
+  function handleDateChange(action: 'next' | 'prev') {
+    if (action === 'next') {
+      setSelectedDate(addDays(selectedDate, 1))
+    } else {
+      setSelectedDate(subDays(selectedDate, 1))
+    }
   }
 
   return (
@@ -28,18 +40,18 @@ export function History() {
       <Container>
         <Selector>
           <ContainerSelector>
-            <IconButton>
+            <IconButton onPress={() => handleDateChange('prev')}>
               <CaretLeft size={32} color={theme.colors.gray800} />
             </IconButton>
-            <Date>xjwenjhj</Date>
-            <IconButton>
+            <DateString>{dateFormat(selectedDate)}</DateString>
+            <IconButton onPress={() => handleDateChange('next')}>
               <CaretRight size={32} color={theme.colors.gray800} />
             </IconButton>
           </ContainerSelector>
         </Selector>
         <VaccineCard
           batchCode="LXT2343767"
-          onPress={handleTemperatureHistory}
+          onPress={() => handleTemperatureHistory(selectedDate)}
         />
       </Container>
     </>

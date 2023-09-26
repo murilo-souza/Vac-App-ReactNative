@@ -21,7 +21,7 @@ export const ContainerSelector = styled.View`
   align-items: center;
 `
 
-export const Date = styled.Text`
+export const DateString = styled.Text`
   font-size: ${RFValue(24)}px;
   font-family: ${(props) => props.theme.fonts.regular};
 

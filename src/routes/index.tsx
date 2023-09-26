@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Signin } from '../screens/Signin'
 
 export function Routes() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   return (
     <NavigationContainer>
