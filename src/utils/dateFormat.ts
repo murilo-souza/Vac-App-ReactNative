@@ -1,9 +1,8 @@
-export function dateFormat(timestampString: string) {
-  const timestampNumber = parseInt(timestampString, 10)
+import { format } from 'date-fns'
+import { ptBR } from 'date-fns/locale'
 
-  const date = new Date(timestampNumber * 1000)
-
-  const dateFormatted = date.toLocaleDateString()
+export function dateFormat(date: Date) {
+  const dateFormatted = format(date, 'dd/MM/yyyy', { locale: ptBR })
 
   return dateFormatted
 }
