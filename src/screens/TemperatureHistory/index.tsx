@@ -66,6 +66,9 @@ export function TemperatureHistory() {
               height={220}
               yAxisSuffix="°C"
               yAxisInterval={1}
+              getDotColor={(value) =>
+                `${value < 28.06 ? theme.colors.red600 : theme.colors.blue600}`
+              }
               chartConfig={{
                 backgroundColor: theme.colors.white,
                 backgroundGradientFrom: theme.colors.white,
