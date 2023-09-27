@@ -14,6 +14,7 @@ import { useTheme } from 'styled-components/native'
 import Collapsible from 'react-native-collapsible'
 import { FlatList } from 'react-native'
 import firestore from '@react-native-firebase/firestore'
+import { Loading } from '../../components/Loading'
 
 type QuestionProps = {
   id: string
@@ -25,6 +26,7 @@ export function FAQ() {
   const theme = useTheme()
   const [expandedItems, setExpandedItems] = useState([])
   const [questions, setQuestion] = useState<QuestionProps[]>([])
+  const [isLoading, setIsLoading] = useState(false)
 
   const toggleItem = (itemId: string) => {
     if (expandedItems.includes(itemId)) {
@@ -35,6 +37,7 @@ export function FAQ() {
   }
 
   useEffect(() => {
+    setIsLoading(true)
     const question = firestore()
       .collection('FAQ')
       .onSnapshot((snapshot) => {
@@ -47,6 +50,7 @@ export function FAQ() {
           }
         })
         setQuestion(data)
+        setIsLoading(false)
       })
     return question
   }, [])
@@ -55,39 +59,45 @@ export function FAQ() {
     <>
       <StatusBar translucent style="light" />
       <HeaderHome />
-      <Container>
-        <FlatList
-          data={questions}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => {
-            const isExpanded = expandedItems.includes(item.id)
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <Container>
+          <FlatList
+            data={questions}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => {
+              const isExpanded = expandedItems.includes(item.id)
 
-            return (
-              <CollapseStroke>
-                <CollapseBox
-                  onPress={() => toggleItem(item.id)}
-                  expanded={isExpanded}
-                >
-                  <Wrapper>
-                    <Title expanded={isExpanded}>{item.title}</Title>
-                    <CaretDown
-                      size={32}
-                      color={
-                        !isExpanded ? theme.colors.gray800 : theme.colors.white
-                      }
-                    />
-                  </Wrapper>
-                  <Collapsible collapsed={!isExpanded}>
-                    <Information expanded={isExpanded}>
-                      {item.information}
-                    </Information>
-                  </Collapsible>
-                </CollapseBox>
-              </CollapseStroke>
-            )
-          }}
-        />
-      </Container>
+              return (
+                <CollapseStroke>
+                  <CollapseBox
+                    onPress={() => toggleItem(item.id)}
+                    expanded={isExpanded}
+                  >
+                    <Wrapper>
+                      <Title expanded={isExpanded}>{item.title}</Title>
+                      <CaretDown
+                        size={32}
+                        color={
+                          !isExpanded
+                            ? theme.colors.gray800
+                            : theme.colors.white
+                        }
+                      />
+                    </Wrapper>
+                    <Collapsible collapsed={!isExpanded}>
+                      <Information expanded={isExpanded}>
+                        {item.information}
+                      </Information>
+                    </Collapsible>
+                  </CollapseBox>
+                </CollapseStroke>
+              )
+            }}
+          />
+        </Container>
+      )}
     </>
   )
 }

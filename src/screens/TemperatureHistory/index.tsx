@@ -1,5 +1,11 @@
 import React from 'react'
-import { ChartContainer, Container, TemperatureList } from './styles'
+import {
+  ChartContainer,
+  Container,
+  EmptyContainer,
+  EmptyTitle,
+  TemperatureList,
+} from './styles'
 import { TemperatureCard } from '../../components/TemperatureCard'
 import { HeaderFocus } from '../../components/HeaderFocus'
 import { StatusBar } from 'expo-status-bar'
@@ -9,6 +15,7 @@ import { FlatList } from 'react-native'
 import { useDevice } from '../../hook/useDevice'
 import { useRoute } from '@react-navigation/native'
 import { timeFormat } from '../../utils/timeFormat'
+import { X } from 'phosphor-react-native'
 
 interface RouteParams {
   selectedDate: Date
@@ -93,8 +100,15 @@ export function TemperatureHistory() {
               <TemperatureCard
                 temperature={item.temperature}
                 time={timeFormat(item.timestamp)}
+                variant={item.temperature < 28.06 ? 'problem' : 'normal'}
               />
             )}
+            ListEmptyComponent={
+              <EmptyContainer>
+                <X size={30} color={theme.colors.red600} />
+                <EmptyTitle>Não ha dados nesse dia</EmptyTitle>
+              </EmptyContainer>
+            }
           />
         </TemperatureList>
       </Container>

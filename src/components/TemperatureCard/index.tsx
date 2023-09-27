@@ -4,16 +4,21 @@ import { Brick, Container, LeftContent, Temperature, Time } from './styles'
 interface TemperatureCardProps {
   time: string
   temperature: number
+  variant: 'normal' | 'problem'
 }
 
-export function TemperatureCard({ time, temperature }: TemperatureCardProps) {
+export function TemperatureCard({
+  time,
+  temperature,
+  variant,
+}: TemperatureCardProps) {
   return (
-    <Container>
+    <Container variant={variant}>
       <LeftContent>
-        <Brick />
-        <Time>{time}</Time>
+        <Brick variant={variant} />
+        <Time variant={variant}>{time}</Time>
       </LeftContent>
-      <Temperature>{temperature.toFixed(2)} °C</Temperature>
+      <Temperature variant={variant}>{temperature.toFixed(2)} °C</Temperature>
     </Container>
   )
 }

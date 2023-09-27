@@ -14,15 +14,19 @@ import { useNavigation } from '@react-navigation/native'
 import { dateFormat } from '../../utils/dateFormat'
 import { CaretLeft, CaretRight } from 'phosphor-react-native'
 import { addDays, subDays } from 'date-fns'
+import { Loading } from '../../components/Loading'
 
 export function History() {
   const theme = useTheme()
   const navigation = useNavigation()
+  const [isLoading, setLoading] = useState(false)
 
   const [selectedDate, setSelectedDate] = useState(new Date())
 
   function handleTemperatureHistory(selectedDate: Date) {
+    setLoading(true)
     navigation.navigate('temperatureHistory', { selectedDate })
+    setLoading(false)
   }
 
   function handleDateChange(action: 'next' | 'prev') {
@@ -44,15 +48,27 @@ export function History() {
               <CaretLeft size={32} color={theme.colors.gray800} />
             </IconButton>
             <DateString>{dateFormat(selectedDate)}</DateString>
-            <IconButton onPress={() => handleDateChange('next')}>
-              <CaretRight size={32} color={theme.colors.gray800} />
+            <IconButton
+              onPress={() => handleDateChange('next')}
+              enabled={selectedDate.getDay() !== new Date().getDay()}
+            >
+              <CaretRight
+                size={32}
+                color={
+                  selectedDate.getDay() !== new Date().getDay()
+                    ? theme.colors.gray800
+                    : theme.colors.gray400
+                }
+              />
             </IconButton>
           </ContainerSelector>
         </Selector>
         <VaccineCard
           batchCode="LXT2343767"
           onPress={() => handleTemperatureHistory(selectedDate)}
+          enabled={!isLoading}
         />
+        {isLoading && <Loading />}
       </Container>
     </>
   )

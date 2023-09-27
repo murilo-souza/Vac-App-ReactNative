@@ -6,7 +6,7 @@ export function timeFormat(timestampString: string) {
 
   const date = new Date(timestampNumber * 1000)
 
-  const timeFormatted = format(date, "HH'h'm", { locale: ptBR })
+  const timeFormatted = format(date, "HH'h'mm", { locale: ptBR })
 
   return timeFormatted
 }

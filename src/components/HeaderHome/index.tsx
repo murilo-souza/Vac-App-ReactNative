@@ -11,13 +11,14 @@ export function HeaderHome() {
   const [loading, setLoading] = useState(false)
 
   function handleSignOut() {
+    setLoading(true)
     auth().signOut()
   }
 
   return (
     <Container>
       <LogoImg source={Logo} />
-      <BorderlessButton onPress={handleSignOut}>
+      <BorderlessButton onPress={handleSignOut} enabled={!loading}>
         <SignOut size={32} color={theme.colors.white} />
       </BorderlessButton>
     </Container>

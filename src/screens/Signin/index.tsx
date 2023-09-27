@@ -60,7 +60,7 @@ export function Signin() {
           onChangeText={setPassword}
           value={password}
         />
-        <ButtonContainer onPress={handleHome}>
+        <ButtonContainer onPress={handleHome} disabled={isLoading}>
           <Title>Entrar</Title>
         </ButtonContainer>
       </Container>
