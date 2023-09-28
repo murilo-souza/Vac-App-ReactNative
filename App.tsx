@@ -18,9 +18,9 @@ export default function App() {
     Poppins_600SemiBold,
   })
 
-  // useEffect(() => {
-  //   RegisterTask()
-  // }, [])
+  useEffect(() => {
+    RegisterTask()
+  }, [])
 
   return (
     <ThemeProvider theme={theme}>
