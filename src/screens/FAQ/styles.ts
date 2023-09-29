@@ -43,7 +43,7 @@ export const Wrapper = styled.View`
 export const Title = styled.Text<CollapseProps>`
   color: ${(props) => props.theme.colors.gray800};
 
-  font-size: ${RFValue(20)}px;
+  font-size: ${RFValue(16)}px;
   font-family: ${(props) => props.theme.fonts.regular};
 
   ${({ expanded }) =>

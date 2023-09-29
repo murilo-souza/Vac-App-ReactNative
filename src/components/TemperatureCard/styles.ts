@@ -79,9 +79,10 @@ export const Brick = styled.View<CardProps>`
   height: 100%;
   width: ${RFValue(8)}px;
 
-  margin-right: 10px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
 
-  overflow: hidden;
+  margin-right: 10px;
 
   ${({ variant }) =>
     variant === 'normal' &&

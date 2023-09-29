@@ -6,7 +6,7 @@ export const Container = styled.View`
 
   background-color: ${(props) => props.theme.colors.blue600};
 
-  padding-top: ${getStatusBarHeight().toFixed(0)};
+  padding-top: ${getStatusBarHeight() + 20}px;
   padding-right: 20px;
   padding-left: 20px;
   padding-bottom: 16px;
