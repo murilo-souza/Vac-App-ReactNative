@@ -40,7 +40,7 @@ export function Realtime() {
     await notifee.displayNotification({
       id: '7',
       title: 'Temperatura próxima do <strong>limite</strong>',
-      body: '<strong>Verificar a câmara de conservação</strong>, temperatura próxima do limite segur',
+      body: '<strong>Verificar a câmara de conservação</strong>, temperatura próxima do limite seguro',
       android: {
         channelId,
         pressAction: {

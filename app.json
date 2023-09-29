@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "vac-app",
+    "name": "Vac app",
     "slug": "vac-app",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -9,7 +9,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#E5E7EB"
+      "backgroundColor": "#2563EB"
     },
     "assetBundlePatterns": [
       "**/*"
