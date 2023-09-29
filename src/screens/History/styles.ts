@@ -6,6 +6,8 @@ export const Container = styled.View`
   flex: 1;
 
   padding: 20px;
+
+  background-color: ${(props) => props.theme.colors.gray200};
 `
 
 export const Selector = styled.View`

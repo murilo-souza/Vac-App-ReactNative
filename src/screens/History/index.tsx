@@ -37,11 +37,6 @@ export function History() {
     }
   }
 
-  // console.log(new Date(Date.now()).getDay() !== selectedDate.getDay())
-  console.log(subDays(selectedDate, 1).getDate())
-  console.log(new Date(Date.now()).getDate())
-  console.log('-----------')
-
   return (
     <>
       <StatusBar translucent style="light" />
