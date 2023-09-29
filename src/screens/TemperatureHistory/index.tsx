@@ -11,7 +11,7 @@ import { HeaderFocus } from '../../components/HeaderFocus'
 import { StatusBar } from 'expo-status-bar'
 import { LineChart } from 'react-native-chart-kit'
 import { useTheme } from 'styled-components/native'
-import { FlatList } from 'react-native'
+import { FlatList, Dimensions } from 'react-native'
 import { useDevice } from '../../hook/useDevice'
 import { useRoute } from '@react-navigation/native'
 import { timeFormat } from '../../utils/timeFormat'
@@ -49,7 +49,7 @@ export function TemperatureHistory() {
       <StatusBar translucent style="light" />
       <HeaderFocus title="LXTH421651" />
       <Container>
-        {filteredDate.length !== 0 ? (
+        {filteredDate.length > 3 ? (
           <ChartContainer horizontal>
             <LineChart
               data={{
@@ -69,11 +69,15 @@ export function TemperatureHistory() {
                   ? filteredDate.slice(0, 100).length * 50
                   : filteredDate.length * 100
               } // from react-native
-              height={220}
+              height={Dimensions.get('window').height / 2.7}
               yAxisSuffix="°C"
               yAxisInterval={1}
               getDotColor={(value) =>
-                `${value < 28.06 ? theme.colors.red600 : theme.colors.blue600}`
+                `${
+                  value > 7 || value < 3
+                    ? theme.colors.red600
+                    : theme.colors.blue600
+                }`
               }
               chartConfig={{
                 backgroundColor: theme.colors.white,
@@ -109,7 +113,11 @@ export function TemperatureHistory() {
               <TemperatureCard
                 temperature={item.temperature}
                 time={timeFormat(item.timestamp)}
-                variant={item.temperature < 28.06 ? 'problem' : 'normal'}
+                variant={
+                  item.temperature > 7 || item.temperature < 3
+                    ? 'problem'
+                    : 'normal'
+                }
               />
             )}
             ListEmptyComponent={

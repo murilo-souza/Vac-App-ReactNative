@@ -1,13 +1,28 @@
 import { getStatusBarHeight } from 'react-native-iphone-x-helper'
 import { RFValue } from 'react-native-responsive-fontsize'
-import styled from 'styled-components/native'
+import styled, { css } from 'styled-components/native'
 
-export const Container = styled.View`
+interface SizeProps {
+  isRealtime: boolean
+}
+
+export const Container = styled.View<SizeProps>`
   width: 100%;
 
   background-color: ${(props) => props.theme.colors.blue600};
 
-  padding-top: ${getStatusBarHeight() + 10}px;
+  ${({ isRealtime }) =>
+    isRealtime === true &&
+    css`
+      padding-top: ${getStatusBarHeight() + 5}px;
+    `}
+
+  ${({ isRealtime }) =>
+    isRealtime === false &&
+    css`
+      padding-top: ${getStatusBarHeight() + 25}px;
+    `}
+
   padding-right: 20px;
   padding-left: 20px;
   padding-bottom: 16px;

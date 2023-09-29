@@ -9,10 +9,11 @@ import {
 } from '@expo-google-fonts/poppins'
 import { ActivityIndicator } from 'react-native'
 import { Routes } from './src/routes'
-import { DeviceContextProvider } from './src/hook/useDevice'
+import { DeviceContextProvider, useDevice } from './src/hook/useDevice'
 import { RegisterTask } from './src/services/notificationBackground'
 
 export default function App() {
+  const { user } = useDevice()
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
     Poppins_600SemiBold,
@@ -20,7 +21,7 @@ export default function App() {
 
   useEffect(() => {
     RegisterTask()
-  }, [])
+  }, [user])
 
   return (
     <ThemeProvider theme={theme}>

@@ -19,7 +19,7 @@ export function HeaderFocus({ title, isRealTime = false }: HeaderProps) {
   }
 
   return (
-    <Container>
+    <Container isRealtime={isRealTime}>
       <BorderlessButton onPress={handleGoBack}>
         <ArrowLeft size={32} color={theme.colors.white} />
       </BorderlessButton>
