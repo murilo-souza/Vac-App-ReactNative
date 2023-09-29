@@ -9,10 +9,11 @@ import { FlatList } from 'react-native'
 import { useDevice } from '../../hook/useDevice'
 import { timeFormat } from '../../utils/timeFormat'
 import notifee, { AndroidImportance } from '@notifee/react-native'
+import { Loading } from '../../components/Loading'
 
 export function Realtime() {
   const theme = useTheme()
-  const { deviceData } = useDevice()
+  const { deviceData, isLoading } = useDevice()
 
   const currentDate = new Date(Date.now())
   const filteredDate = deviceData.filter((item) => {
@@ -50,6 +51,10 @@ export function Realtime() {
       displayNotifications()
     }
   }, [filteredDate])
+
+  if (isLoading && !filteredDate) {
+    return <Loading />
+  }
 
   return (
     <>

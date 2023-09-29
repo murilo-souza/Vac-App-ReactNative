@@ -18,6 +18,7 @@ interface DeviceDataProps {
 
 interface DeviceContextData {
   deviceData: DeviceDataProps[]
+  isLoading: boolean
 }
 
 interface ContextProviderProps {
@@ -28,9 +29,11 @@ export const DeviceContext = createContext({} as DeviceContextData)
 
 export function DeviceContextProvider({ children }: ContextProviderProps) {
   const [deviceData, setDeviceData] = useState<DeviceDataProps[]>([])
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     // if (auth().currentUser.uid) {
+    setIsLoading(true)
     database()
       .ref('/UsersData/9ifemwpVrQSW9S6CYe6DCgcNIIf1/readings')
       .on('value', (snapshot) => {
@@ -46,13 +49,14 @@ export function DeviceContextProvider({ children }: ContextProviderProps) {
           )
           const reverseData = filteredData.reverse()
           setDeviceData(reverseData)
+          setIsLoading(false)
         }
       })
     // }
   }, [])
 
   return (
-    <DeviceContext.Provider value={{ deviceData }}>
+    <DeviceContext.Provider value={{ deviceData, isLoading }}>
       {children}
     </DeviceContext.Provider>
   )

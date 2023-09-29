@@ -16,6 +16,7 @@ import { useDevice } from '../../hook/useDevice'
 import { useRoute } from '@react-navigation/native'
 import { timeFormat } from '../../utils/timeFormat'
 import { X } from 'phosphor-react-native'
+import { Loading } from '../../components/Loading'
 
 interface RouteParams {
   selectedDate: Date
@@ -23,7 +24,8 @@ interface RouteParams {
 
 export function TemperatureHistory() {
   const theme = useTheme()
-  const { deviceData } = useDevice()
+  const { deviceData, isLoading } = useDevice()
+
   const route = useRoute()
   const { selectedDate } = route.params as RouteParams
 
@@ -37,6 +39,10 @@ export function TemperatureHistory() {
       dateUTC.getFullYear() === selectedDate.getFullYear()
     )
   })
+
+  if (isLoading && !filteredDate) {
+    return <Loading />
+  }
 
   return (
     <>

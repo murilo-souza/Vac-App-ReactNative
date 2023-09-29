@@ -21,7 +21,7 @@ export function History() {
   const navigation = useNavigation()
   const [isLoading, setLoading] = useState(false)
 
-  const [selectedDate, setSelectedDate] = useState(new Date())
+  const [selectedDate, setSelectedDate] = useState(new Date(Date.now()))
 
   function handleTemperatureHistory(selectedDate: Date) {
     setLoading(true)
@@ -37,6 +37,11 @@ export function History() {
     }
   }
 
+  // console.log(new Date(Date.now()).getDay() !== selectedDate.getDay())
+  console.log(subDays(selectedDate, 1).getDate())
+  console.log(new Date(Date.now()).getDate())
+  console.log('-----------')
+
   return (
     <>
       <StatusBar translucent style="light" />
@@ -50,12 +55,16 @@ export function History() {
             <DateString>{dateFormat(selectedDate)}</DateString>
             <IconButton
               onPress={() => handleDateChange('next')}
-              enabled={selectedDate.getDay() !== new Date().getDay()}
+              enabled={
+                selectedDate.getDate().toString() !==
+                new Date(Date.now()).getDate().toString()
+              }
             >
               <CaretRight
                 size={32}
                 color={
-                  selectedDate.getDay() !== new Date().getDay()
+                  selectedDate.getDate().toString() !==
+                  new Date(Date.now()).getDate().toString()
                     ? theme.colors.gray800
                     : theme.colors.gray400
                 }
