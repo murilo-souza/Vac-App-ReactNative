@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:300523361902:android:d829ec6f10fe9a86aef87f",
         "android_client_info": {
-          "package_name": "com.murilosouza.vac"
+          "package_name": "com.murilosouza232.vac"
         }
       },
       "oauth_client": [
@@ -35,7 +35,7 @@
               "client_id": "300523361902-e0ri96mqmqbbicsogdvg9jhpe4cv9b25.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.murilosouza.vac"
+                "bundle_id": "com.murilosouza232.vac"
               }
             }
           ]

@@ -1,4 +1,4 @@
-package com.murilosouza.vac;
+package com.murilosouza232.vac;
 
 import android.app.Application;
 import android.content.res.Configuration;
