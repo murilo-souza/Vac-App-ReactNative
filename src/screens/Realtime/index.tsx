@@ -23,7 +23,7 @@ export function Realtime() {
   const { deviceData, isLoading } = useDevice()
 
   const currentDate = new Date(Date.now())
-  const filteredDate = deviceData.filter((item) => {
+  const filteredData = deviceData.filter((item) => {
     const timestampNumber = parseInt(item.timestamp, 10)
     const dateUTC = new Date(timestampNumber * 1000)
 
@@ -59,14 +59,14 @@ export function Realtime() {
 
   useEffect(() => {
     // eslint-disable-next-line array-callback-return
-    if (filteredDate.length !== 0) {
-      if (filteredDate[0].temperature > 7 || filteredDate[0].temperature < 3) {
+    if (filteredData.length !== 0) {
+      if (filteredData[0].temperature > 7 || filteredData[0].temperature < 3) {
         displayNotifications()
       }
     }
-  }, [filteredDate])
+  }, [filteredData])
 
-  if (isLoading && !filteredDate) {
+  if (isLoading && !filteredData) {
     return <Loading />
   }
 
@@ -75,25 +75,25 @@ export function Realtime() {
       <StatusBar translucent style="light" />
       <HeaderFocus title="LXTH421651" isRealTime />
       <Container>
-        {filteredDate.length > 3 ? (
+        {filteredData.length > 3 ? (
           <ChartContainer horizontal>
             <LineChart
               data={{
-                labels: filteredDate.slice(0, 100).map((item) => {
+                labels: filteredData.slice(0, 100).map((item) => {
                   return timeFormat(item.timestamp)
                 }),
                 datasets: [
                   {
-                    data: filteredDate.slice(0, 100).map((item) => {
+                    data: filteredData.slice(0, 100).map((item) => {
                       return item.temperature
                     }),
                   },
                 ],
               }}
               width={
-                filteredDate.length > 100
-                  ? filteredDate.slice(0, 100).length * 50
-                  : filteredDate.length * 50
+                filteredData.length > 100
+                  ? filteredData.slice(0, 100).length * 50
+                  : filteredData.length * 50
               } // from react-native
               height={Dimensions.get('window').height / 2.7}
               getDotColor={(value) =>
@@ -133,7 +133,7 @@ export function Realtime() {
         )}
         <TemperatureList>
           <FlatList
-            data={filteredDate}
+            data={filteredData}
             keyExtractor={(item) => item.timestamp}
             renderItem={({ item }) => (
               <TemperatureCard

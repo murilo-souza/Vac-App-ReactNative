@@ -3,6 +3,7 @@ import * as BackgroundFetch from 'expo-background-fetch'
 import database from '@react-native-firebase/database'
 import notifee, { AndroidImportance } from '@notifee/react-native'
 import auth from '@react-native-firebase/auth'
+
 const TASK_NAME = 'SEND_NOTIFICATION'
 
 interface DeviceDataProps {
@@ -80,7 +81,7 @@ TaskManager.defineTask(TASK_NAME, () => {
 
 export function RegisterTask() {
   return BackgroundFetch.registerTaskAsync(TASK_NAME, {
-    minimumInterval: 2,
+    minimumInterval: 60,
     stopOnTerminate: false,
   })
 }
