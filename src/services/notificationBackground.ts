@@ -52,11 +52,23 @@ TaskManager.defineTask(TASK_NAME, () => {
               (item: DeviceDataProps) => item.temperature !== 85,
             )
             const reverseData = filteredData.reverse()
-            if (
-              reverseData[0].temperature > 7 ||
-              reverseData[0].temperature < 3
-            ) {
-              displayNotifications()
+            const currentDate = new Date(Date.now())
+            const filteredDate = reverseData.filter((item) => {
+              const timestampNumber = parseInt(item.timestamp, 10)
+              const dateUTC = new Date(timestampNumber * 1000)
+              return (
+                dateUTC.getDate() === currentDate.getDate() &&
+                dateUTC.getMonth() === currentDate.getMonth() &&
+                dateUTC.getFullYear() === currentDate.getFullYear()
+              )
+            })
+            if (filteredDate.length !== 0) {
+              if (
+                filteredDate[0].temperature > 7 ||
+                filteredDate[0].temperature < 3
+              ) {
+                displayNotifications()
+              }
             }
           }
         })

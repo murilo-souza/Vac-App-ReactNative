@@ -1,5 +1,11 @@
 import React, { useEffect } from 'react'
-import { ChartContainer, Container, TemperatureList } from './styles'
+import {
+  ChartContainer,
+  Container,
+  EmptyContainer,
+  EmptyTitle,
+  TemperatureList,
+} from './styles'
 import { TemperatureCard } from '../../components/TemperatureCard'
 import { HeaderFocus } from '../../components/HeaderFocus'
 import { StatusBar } from 'expo-status-bar'
@@ -10,6 +16,7 @@ import { useDevice } from '../../hook/useDevice'
 import { timeFormat } from '../../utils/timeFormat'
 import notifee, { AndroidImportance } from '@notifee/react-native'
 import { Loading } from '../../components/Loading'
+import { X } from 'phosphor-react-native'
 
 export function Realtime() {
   const theme = useTheme()
@@ -52,8 +59,10 @@ export function Realtime() {
 
   useEffect(() => {
     // eslint-disable-next-line array-callback-return
-    if (filteredDate[0].temperature > 7 || filteredDate[0].temperature < 3) {
-      displayNotifications()
+    if (filteredDate.length !== 0) {
+      if (filteredDate[0].temperature > 7 || filteredDate[0].temperature < 3) {
+        displayNotifications()
+      }
     }
   }, [filteredDate])
 
@@ -137,6 +146,12 @@ export function Realtime() {
                 }
               />
             )}
+            ListEmptyComponent={
+              <EmptyContainer>
+                <X size={30} color={theme.colors.red600} />
+                <EmptyTitle>Não ha dados em tempo real</EmptyTitle>
+              </EmptyContainer>
+            }
           />
         </TemperatureList>
       </Container>

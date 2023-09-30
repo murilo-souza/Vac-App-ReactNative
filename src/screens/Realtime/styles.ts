@@ -1,3 +1,4 @@
+import { RFValue } from 'react-native-responsive-fontsize'
 import styled from 'styled-components/native'
 
 export const Container = styled.View`
@@ -19,4 +20,17 @@ export const TemperatureList = styled.View`
 export const ChartContainer = styled.ScrollView`
   margin-bottom: 20px;
   background-color: ${(props) => props.theme.colors.white};
+`
+export const EmptyContainer = styled.View`
+  align-items: center;
+  justify-content: center;
+
+  padding-top: 20px;
+`
+
+export const EmptyTitle = styled.Text`
+  font-size: ${RFValue(20)}px;
+  font-family: ${(props) => props.theme.fonts.semiBold};
+
+  color: ${(props) => props.theme.colors.gray800};
 `
