@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import {
+  CardContainer,
   ChartContainer,
   Container,
   EmptyContainer,
@@ -20,7 +21,7 @@ import { X } from 'phosphor-react-native'
 
 export function Realtime() {
   const theme = useTheme()
-  const { deviceData, isLoading } = useDevice()
+  const { deviceData, isLoading, deviceProps } = useDevice()
 
   const currentDate = new Date(Date.now())
   const filteredData = deviceData.filter((item) => {
@@ -60,7 +61,10 @@ export function Realtime() {
   useEffect(() => {
     // eslint-disable-next-line array-callback-return
     if (filteredData.length !== 0) {
-      if (filteredData[0].temperature > 7 || filteredData[0].temperature < 3) {
+      if (
+        filteredData[0].temperature > deviceProps.max_temperature - 1 ||
+        filteredData[0].temperature < deviceProps.min_temperature + 1
+      ) {
         displayNotifications()
       }
     }
@@ -87,20 +91,27 @@ export function Realtime() {
                     data: filteredData.slice(0, 100).map((item) => {
                       return item.temperature
                     }),
+                    color: () => `${theme.colors.blue600}`,
+                  },
+                  {
+                    data: filteredData.slice(0, 100).map((item) => {
+                      return item.temperatureH
+                    }),
+                    color: () => `${theme.colors.green600}`,
                   },
                 ],
               }}
               width={
                 filteredData.length > 100
                   ? filteredData.slice(0, 100).length * 50
-                  : filteredData.length * 50
+                  : filteredData.length * 100
               } // from react-native
               height={Dimensions.get('window').height / 2.7}
               getDotColor={(value) =>
                 `${
-                  value > 7 || value < 3
-                    ? theme.colors.red600
-                    : theme.colors.blue600
+                  (value > deviceProps.max_temperature - 1 ||
+                    value < deviceProps.min_temperature + 1) &&
+                  theme.colors.red600
                 }`
               }
               yAxisSuffix="°C"
@@ -109,16 +120,13 @@ export function Realtime() {
                 backgroundColor: theme.colors.white,
                 backgroundGradientFrom: theme.colors.white,
                 backgroundGradientTo: theme.colors.white,
-                decimalPlaces: 1, // optional, defaults to 2dp
-                color: () => `${theme.colors.blue600}`,
+                color: () => `${theme.colors.gray500}`,
                 labelColor: () => `${theme.colors.gray800}`,
                 style: {
                   borderRadius: 16,
                 },
                 propsForDots: {
                   r: '6',
-                  strokeWidth: '2',
-                  stroke: theme.colors.gray200,
                 },
               }}
               bezier
@@ -136,15 +144,30 @@ export function Realtime() {
             data={filteredData}
             keyExtractor={(item) => item.timestamp}
             renderItem={({ item }) => (
-              <TemperatureCard
-                temperature={item.temperature}
-                time={timeFormat(item.timestamp)}
-                variant={
-                  item.temperature > 7 || item.temperature < 3
-                    ? 'problem'
-                    : 'normal'
-                }
-              />
+              <CardContainer>
+                <TemperatureCard
+                  temperature={item.temperatureH}
+                  time={timeFormat(item.timestamp)}
+                  defaultColor="green"
+                  variant={
+                    item.temperature > deviceProps.max_temperature - 1 ||
+                    item.temperature < deviceProps.min_temperature + 1
+                      ? 'problem'
+                      : 'normal'
+                  }
+                />
+                <TemperatureCard
+                  temperature={item.temperature}
+                  defaultColor="blue"
+                  time={timeFormat(item.timestamp)}
+                  variant={
+                    item.temperature > deviceProps.max_temperature - 1 ||
+                    item.temperature < deviceProps.min_temperature + 1
+                      ? 'problem'
+                      : 'normal'
+                  }
+                />
+              </CardContainer>
             )}
             ListEmptyComponent={
               <EmptyContainer>

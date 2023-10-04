@@ -22,6 +22,13 @@ export const ChartContainer = styled.ScrollView`
   background-color: ${(props) => props.theme.colors.white};
 `
 
+export const CardContainer = styled.View`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`
+
 export const EmptyContainer = styled.View`
   align-items: center;
   justify-content: center;

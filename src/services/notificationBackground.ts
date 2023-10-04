@@ -13,6 +13,13 @@ interface DeviceDataProps {
   timestamp: string
 }
 
+interface DeviceProperties {
+  max_humidity: number
+  min_humidity: number
+  max_temperature: number
+  min_temperature: number
+}
+
 async function displayNotifications() {
   await notifee.requestPermission()
 
@@ -52,7 +59,10 @@ TaskManager.defineTask(TASK_NAME, () => {
             const filteredData = dataArray.filter(
               (item: DeviceDataProps) => item.temperature !== 85,
             )
-            const reverseData = filteredData.reverse()
+            const filteredData2 = filteredData.filter(
+              (item: DeviceDataProps) => item.temperature !== -127,
+            )
+            const reverseData = filteredData2.reverse()
             const currentDate = new Date(Date.now())
             const filteredDate = reverseData.filter((item) => {
               const timestampNumber = parseInt(item.timestamp, 10)
@@ -64,12 +74,18 @@ TaskManager.defineTask(TASK_NAME, () => {
               )
             })
             if (filteredDate.length !== 0) {
-              if (
-                filteredDate[0].temperature > 7 ||
-                filteredDate[0].temperature < 3
-              ) {
-                displayNotifications()
-              }
+              database()
+                .ref(`/UsersData/${auth().currentUser.uid}/properties`)
+                .on('value', (snapshot) => {
+                  const parameters: DeviceProperties = snapshot.val()
+                  if (
+                    filteredDate[0].temperature >
+                      parameters.max_temperature - 1 ||
+                    filteredDate[0].temperature < parameters.min_temperature + 1
+                  ) {
+                    displayNotifications()
+                  }
+                })
             }
           }
         })

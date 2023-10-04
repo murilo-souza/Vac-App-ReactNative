@@ -34,3 +34,9 @@ export const EmptyTitle = styled.Text`
 
   color: ${(props) => props.theme.colors.gray800};
 `
+export const CardContainer = styled.View`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`

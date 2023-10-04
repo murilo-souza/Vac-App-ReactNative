@@ -1,5 +1,6 @@
 import React from 'react'
 import {
+  CardContainer,
   ChartContainer,
   Container,
   EmptyContainer,
@@ -24,7 +25,7 @@ interface RouteParams {
 
 export function TemperatureHistory() {
   const theme = useTheme()
-  const { deviceData, isLoading } = useDevice()
+  const { deviceData, isLoading, deviceProps } = useDevice()
 
   const route = useRoute()
   const { selectedDate } = route.params as RouteParams
@@ -47,7 +48,7 @@ export function TemperatureHistory() {
   return (
     <>
       <StatusBar translucent style="light" />
-      <HeaderFocus title="LXTH421651" />
+      <HeaderFocus title="LXTH42165111" />
       <Container>
         {filteredDate.length > 3 ? (
           <ChartContainer horizontal>
@@ -61,6 +62,13 @@ export function TemperatureHistory() {
                     data: filteredDate.slice(0, 100).map((item) => {
                       return item.temperature
                     }),
+                    color: () => `${theme.colors.blue600}`,
+                  },
+                  {
+                    data: filteredDate.slice(0, 100).map((item) => {
+                      return item.temperatureH
+                    }),
+                    color: () => `${theme.colors.green600}`,
                   },
                 ],
               }}
@@ -72,27 +80,24 @@ export function TemperatureHistory() {
               height={Dimensions.get('window').height / 2.7}
               yAxisSuffix="°C"
               yAxisInterval={1}
-              getDotColor={(value) =>
+              getDotColor={(value2) =>
                 `${
-                  value > 7 || value < 3
-                    ? theme.colors.red600
-                    : theme.colors.blue600
+                  (value2 > deviceProps.max_temperature - 1 ||
+                    value2 < deviceProps.min_temperature + 1) &&
+                  theme.colors.red600
                 }`
               }
               chartConfig={{
                 backgroundColor: theme.colors.white,
                 backgroundGradientFrom: theme.colors.white,
                 backgroundGradientTo: theme.colors.white,
-                decimalPlaces: 1, // optional, defaults to 2dp
-                color: () => `${theme.colors.blue600}`,
+                color: () => `${theme.colors.gray500}`,
                 labelColor: () => `${theme.colors.gray800}`,
                 style: {
                   borderRadius: 16,
                 },
                 propsForDots: {
                   r: '6',
-                  strokeWidth: '2',
-                  stroke: theme.colors.gray200,
                 },
               }}
               bezier
@@ -110,15 +115,30 @@ export function TemperatureHistory() {
             data={filteredDate}
             keyExtractor={(item) => item.timestamp}
             renderItem={({ item }) => (
-              <TemperatureCard
-                temperature={item.temperature}
-                time={timeFormat(item.timestamp)}
-                variant={
-                  item.temperature > 7 || item.temperature < 3
-                    ? 'problem'
-                    : 'normal'
-                }
-              />
+              <CardContainer>
+                <TemperatureCard
+                  temperature={item.temperatureH}
+                  time={timeFormat(item.timestamp)}
+                  defaultColor="green"
+                  variant={
+                    item.temperature > deviceProps.max_temperature - 1 ||
+                    item.temperature < deviceProps.min_temperature + 1
+                      ? 'problem'
+                      : 'normal'
+                  }
+                />
+                <TemperatureCard
+                  temperature={item.temperature}
+                  defaultColor="blue"
+                  time={timeFormat(item.timestamp)}
+                  variant={
+                    item.temperature > deviceProps.max_temperature - 1 ||
+                    item.temperature < deviceProps.min_temperature + 1
+                      ? 'problem'
+                      : 'normal'
+                  }
+                />
+              </CardContainer>
             )}
             ListEmptyComponent={
               <EmptyContainer>

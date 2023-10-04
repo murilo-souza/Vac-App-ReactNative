@@ -16,8 +16,16 @@ interface DeviceDataProps {
   timestamp: string
 }
 
+interface DeviceProperties {
+  max_humidity: number
+  min_humidity: number
+  max_temperature: number
+  min_temperature: number
+}
+
 interface DeviceContextData {
   deviceData: DeviceDataProps[]
+  deviceProps: DeviceProperties
   isLoading: boolean
   user: FirebaseAuthTypes.User | null
 }
@@ -30,6 +38,9 @@ export const DeviceContext = createContext({} as DeviceContextData)
 
 export function DeviceContextProvider({ children }: ContextProviderProps) {
   const [deviceData, setDeviceData] = useState<DeviceDataProps[]>([])
+  const [deviceProps, setDeviceProps] = useState<DeviceProperties>(
+    {} as DeviceProperties,
+  )
   const [isLoading, setIsLoading] = useState(false)
   const [user, setUser] = useState<FirebaseAuthTypes.User | null>()
 
@@ -53,16 +64,30 @@ export function DeviceContextProvider({ children }: ContextProviderProps) {
             const filteredData = dataArray.filter(
               (item: DeviceDataProps) => item.temperature !== 85,
             )
-            const reverseData = filteredData.reverse()
+            const filteredData2 = filteredData.filter(
+              (item: DeviceDataProps) => item.temperature !== -127,
+            )
+            const reverseData = filteredData2.reverse()
             setDeviceData(reverseData)
             setIsLoading(false)
           }
         })
     }
+
+    if (user) {
+      setIsLoading(true)
+      database()
+        .ref(`/UsersData/${user.uid}/properties`)
+        .on('value', (snapshot) => {
+          setDeviceProps(snapshot.val())
+        })
+    }
   }, [user])
 
   return (
-    <DeviceContext.Provider value={{ deviceData, isLoading, user }}>
+    <DeviceContext.Provider
+      value={{ deviceData, deviceProps, isLoading, user }}
+    >
       {children}
     </DeviceContext.Provider>
   )

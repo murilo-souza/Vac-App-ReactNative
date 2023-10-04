@@ -52,6 +52,7 @@ export function Signin() {
           placeholder="vac@example.com"
           onChangeText={setEmail}
           value={email}
+          autoCapitalize="none"
         />
         <Input
           title="Senha"
@@ -59,6 +60,7 @@ export function Signin() {
           secureTextEntry
           onChangeText={setPassword}
           value={password}
+          autoCapitalize="none"
         />
         <ButtonContainer onPress={handleHome} disabled={isLoading}>
           <Title>Entrar</Title>

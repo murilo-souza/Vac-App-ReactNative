@@ -3,26 +3,36 @@ import styled, { css } from 'styled-components/native'
 
 interface CardProps {
   variant: 'normal' | 'problem'
+  defaultColor: 'green' | 'blue'
 }
 
 export const Container = styled.View<CardProps>`
-  width: 100%;
-  height: ${RFValue(45)}px;
+  width: 170px;
+  height: ${RFValue(70)}px;
+
+  padding: 5px;
 
   border-radius: 5px;
 
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-
-  flex-direction: row;
 
   margin-bottom: 20px;
 
-  ${({ variant }) =>
+  ${({ variant, defaultColor }) =>
     variant === 'normal' &&
+    defaultColor === 'blue' &&
     css`
       border: 1px solid ${(props) => props.theme.colors.gray400};
-      background-color: ${(props) => props.theme.colors.white};
+      background-color: ${(props) => props.theme.colors.blue600};
+    `}
+
+  ${({ variant, defaultColor }) =>
+    variant === 'normal' &&
+    defaultColor === 'green' &&
+    css`
+      border: 1px solid ${(props) => props.theme.colors.gray400};
+      background-color: ${(props) => props.theme.colors.green600};
     `}
 
   ${({ variant }) =>
@@ -32,28 +42,12 @@ export const Container = styled.View<CardProps>`
       background-color: ${(props) => props.theme.colors.red600};
     `}
 `
-export const LeftContent = styled.View`
-  flex-direction: row;
-  height: 100%;
-
-  align-items: center;
-`
 
 export const Time = styled.Text<CardProps>`
   font-size: ${RFValue(20)}px;
   font-family: ${(props) => props.theme.fonts.regular};
 
-  ${({ variant }) =>
-    variant === 'normal' &&
-    css`
-      color: ${(props) => props.theme.colors.gray800};
-    `}
-
-  ${({ variant }) =>
-    variant === 'problem' &&
-    css`
-      color: ${(props) => props.theme.colors.white};
-    `}
+  color: ${(props) => props.theme.colors.white};
 `
 
 export const Temperature = styled.Text<CardProps>`
@@ -62,37 +56,5 @@ export const Temperature = styled.Text<CardProps>`
 
   margin-right: 10px;
 
-  ${({ variant }) =>
-    variant === 'normal' &&
-    css`
-      color: ${(props) => props.theme.colors.gray800};
-    `}
-
-  ${({ variant }) =>
-    variant === 'problem' &&
-    css`
-      color: ${(props) => props.theme.colors.white};
-    `}
-`
-
-export const Brick = styled.View<CardProps>`
-  height: 100%;
-  width: ${RFValue(8)}px;
-
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-
-  margin-right: 10px;
-
-  ${({ variant }) =>
-    variant === 'normal' &&
-    css`
-      background-color: ${(props) => props.theme.colors.blue600};
-    `}
-
-  ${({ variant }) =>
-    variant === 'problem' &&
-    css`
-      background-color: ${(props) => props.theme.colors.red600};
-    `}
+  color: ${(props) => props.theme.colors.white};
 `

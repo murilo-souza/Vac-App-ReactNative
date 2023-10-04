@@ -12,6 +12,8 @@ export const theme = {
     blue600: '#2563EB',
 
     red600: '#DC2626',
+
+    green600: '#059669',
   },
 
   fonts: {
