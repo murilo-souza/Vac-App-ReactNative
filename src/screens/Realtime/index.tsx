@@ -62,8 +62,8 @@ export function Realtime() {
     // eslint-disable-next-line array-callback-return
     if (filteredData.length !== 0) {
       if (
-        filteredData[0].temperature > deviceProps.max_temperature - 1 ||
-        filteredData[0].temperature < deviceProps.min_temperature + 1
+        filteredData[0].temperature > Number(deviceProps.max_temperature) - 1 ||
+        filteredData[0].temperature < Number(deviceProps.min_temperature) + 1
       ) {
         displayNotifications()
       }
@@ -109,8 +109,8 @@ export function Realtime() {
               height={Dimensions.get('window').height / 2.7}
               getDotColor={(value) =>
                 `${
-                  (value > deviceProps.max_temperature - 1 ||
-                    value < deviceProps.min_temperature + 1) &&
+                  (value > Number(deviceProps.max_temperature) - 1 ||
+                    value < Number(deviceProps.min_temperature) + 1) &&
                   theme.colors.red600
                 }`
               }
@@ -150,8 +150,9 @@ export function Realtime() {
                   time={timeFormat(item.timestamp)}
                   defaultColor="green"
                   variant={
-                    item.temperature > deviceProps.max_temperature - 1 ||
-                    item.temperature < deviceProps.min_temperature + 1
+                    item.temperature >
+                      Number(deviceProps.max_temperature) - 1 ||
+                    item.temperature < Number(deviceProps.min_temperature) + 1
                       ? 'problem'
                       : 'normal'
                   }
@@ -161,8 +162,9 @@ export function Realtime() {
                   defaultColor="blue"
                   time={timeFormat(item.timestamp)}
                   variant={
-                    item.temperature > deviceProps.max_temperature - 1 ||
-                    item.temperature < deviceProps.min_temperature + 1
+                    item.temperature >
+                      Number(deviceProps.max_temperature) - 1 ||
+                    item.temperature < Number(deviceProps.min_temperature) + 1
                       ? 'problem'
                       : 'normal'
                   }
