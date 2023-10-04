@@ -1,10 +1,16 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { useTheme } from 'styled-components/native'
-import { CircleWavyQuestion, House, Notepad } from 'phosphor-react-native'
+import {
+  CircleWavyQuestion,
+  House,
+  Notepad,
+  Wrench,
+} from 'phosphor-react-native'
 import { IconContainer } from './styles'
 import { FAQ } from '../screens/FAQ'
 import { HistoryStackRoutes } from './StackGroup/history.stack.routes'
 import { HomeStackRoutes } from './StackGroup/home.stack.routes'
+import { Parameters } from '../screens/Parameters'
 
 const { Navigator, Screen } = createBottomTabNavigator()
 
@@ -63,6 +69,23 @@ export function AppTabRoutes() {
                 </IconContainer>
               ) : (
                 <House size={32} color={color} />
+              )}
+            </>
+          ),
+        }}
+      />
+      <Screen
+        name="Parameters"
+        component={Parameters}
+        options={{
+          tabBarIcon: ({ color, focused }) => (
+            <>
+              {focused ? (
+                <IconContainer>
+                  <Wrench size={32} color={color} />
+                </IconContainer>
+              ) : (
+                <Wrench size={32} color={color} />
               )}
             </>
           ),

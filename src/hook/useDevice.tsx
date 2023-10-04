@@ -17,10 +17,10 @@ interface DeviceDataProps {
 }
 
 interface DeviceProperties {
-  max_humidity: number
-  min_humidity: number
-  max_temperature: number
-  min_temperature: number
+  max_humidity: number | string
+  min_humidity: number | string
+  max_temperature: number | string
+  min_temperature: number | string
 }
 
 interface DeviceContextData {

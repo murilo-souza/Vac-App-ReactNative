@@ -82,8 +82,8 @@ export function TemperatureHistory() {
               yAxisInterval={1}
               getDotColor={(value2) =>
                 `${
-                  (value2 > deviceProps.max_temperature - 1 ||
-                    value2 < deviceProps.min_temperature + 1) &&
+                  (value2 > Number(deviceProps.max_temperature) - 1 ||
+                    value2 < Number(deviceProps.min_temperature) + 1) &&
                   theme.colors.red600
                 }`
               }
@@ -121,8 +121,9 @@ export function TemperatureHistory() {
                   time={timeFormat(item.timestamp)}
                   defaultColor="green"
                   variant={
-                    item.temperature > deviceProps.max_temperature - 1 ||
-                    item.temperature < deviceProps.min_temperature + 1
+                    item.temperature >
+                      Number(deviceProps.max_temperature) - 1 ||
+                    item.temperature < Number(deviceProps.min_temperature) + 1
                       ? 'problem'
                       : 'normal'
                   }
@@ -132,8 +133,9 @@ export function TemperatureHistory() {
                   defaultColor="blue"
                   time={timeFormat(item.timestamp)}
                   variant={
-                    item.temperature > deviceProps.max_temperature - 1 ||
-                    item.temperature < deviceProps.min_temperature + 1
+                    item.temperature >
+                      Number(deviceProps.max_temperature) - 1 ||
+                    item.temperature < Number(deviceProps.min_temperature) + 1
                       ? 'problem'
                       : 'normal'
                   }
