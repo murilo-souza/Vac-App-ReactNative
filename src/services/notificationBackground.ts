@@ -1,8 +1,9 @@
 import * as TaskManager from 'expo-task-manager'
 import * as BackgroundFetch from 'expo-background-fetch'
 import database from '@react-native-firebase/database'
-import notifee, { AndroidImportance } from '@notifee/react-native'
 import auth from '@react-native-firebase/auth'
+import { TemperatureNotification } from '../utils/temperatureNotification'
+import { HumidityNotification } from '../utils/humidityNotification'
 
 const TASK_NAME = 'SEND_NOTIFICATION'
 
@@ -18,29 +19,6 @@ interface DeviceProperties {
   min_humidity: number
   max_temperature: number
   min_temperature: number
-}
-
-async function displayNotifications() {
-  await notifee.requestPermission()
-
-  const channelId = await notifee.createChannel({
-    id: 'Warning',
-    name: 'Temperature',
-    vibration: true,
-    importance: AndroidImportance.HIGH,
-  })
-
-  await notifee.displayNotification({
-    id: '7',
-    title: 'Temperatura próxima do <strong>limite</strong>',
-    body: '<strong>Verificar a câmara de conservação</strong>, temperatura próxima do limite seguro',
-    android: {
-      channelId,
-      pressAction: {
-        id: 'default',
-      },
-    },
-  })
 }
 
 TaskManager.defineTask(TASK_NAME, () => {
@@ -62,7 +40,10 @@ TaskManager.defineTask(TASK_NAME, () => {
             const filteredData2 = filteredData.filter(
               (item: DeviceDataProps) => item.temperature !== -127,
             )
-            const reverseData = filteredData2.reverse()
+            const filteredData3 = filteredData2.filter(
+              (item: DeviceDataProps) => item.temperatureH !== -1.2147483647,
+            )
+            const reverseData = filteredData3.reverse()
             const currentDate = new Date(Date.now())
             const filteredDate = reverseData.filter((item) => {
               const timestampNumber = parseInt(item.timestamp, 10)
@@ -84,7 +65,7 @@ TaskManager.defineTask(TASK_NAME, () => {
                     filteredDate[0].temperature <
                       Number(parameters.min_temperature) + 1
                   ) {
-                    displayNotifications()
+                    TemperatureNotification()
                   }
                   if (
                     filteredDate[0].humidity >
@@ -92,7 +73,7 @@ TaskManager.defineTask(TASK_NAME, () => {
                     filteredDate[0].humidity <
                       Number(parameters.min_humidity) + 10
                   ) {
-                    displayNotifications()
+                    HumidityNotification()
                   }
                 })
             }

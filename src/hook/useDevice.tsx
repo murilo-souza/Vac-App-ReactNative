@@ -67,7 +67,10 @@ export function DeviceContextProvider({ children }: ContextProviderProps) {
             const filteredData2 = filteredData.filter(
               (item: DeviceDataProps) => item.temperature !== -127,
             )
-            const reverseData = filteredData2.reverse()
+            const filteredData3 = filteredData2.filter(
+              (item: DeviceDataProps) => item.temperatureH !== -1.2147483647,
+            )
+            const reverseData = filteredData3.reverse()
             setDeviceData(reverseData)
             setIsLoading(false)
           }

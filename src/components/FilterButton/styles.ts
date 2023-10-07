@@ -16,7 +16,10 @@ export const SelectorStroke = styled.View<SelectionProps>`
 `
 
 export const Selector = styled(BorderlessButton)`
-  padding: 5px;
+  padding-top: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 5px;
 `
 
 export const TitleSelector = styled.Text`

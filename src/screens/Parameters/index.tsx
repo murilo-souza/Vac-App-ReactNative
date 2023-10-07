@@ -39,17 +39,13 @@ export function Parameters() {
     } else {
       try {
         setIsLoading(true)
-        database()
-          .ref(`/UsersData/${user.uid}/properties`)
-          .update({
-            max_humidity: maxHumidity,
-            max_temperature: maxTemperature,
-            min_humidity: minHumidity,
-            min_temperature: minTemperature,
-          })
-          .then(() =>
-            Alert.alert('Sucesso', 'Parâmetros atualizados com sucesso'),
-          )
+        database().ref(`/UsersData/${user.uid}/properties`).update({
+          max_humidity: maxHumidity,
+          max_temperature: maxTemperature,
+          min_humidity: minHumidity,
+          min_temperature: minTemperature,
+        })
+        Alert.alert('Sucesso', 'Parâmetros atualizados com sucesso')
         setIsLoading(false)
       } catch (error) {
         Alert.alert('Erro', 'Não foi possível atualizar os parâmetros')

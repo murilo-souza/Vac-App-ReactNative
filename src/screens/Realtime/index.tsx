@@ -15,11 +15,13 @@ import { useTheme } from 'styled-components/native'
 import { FlatList, Dimensions } from 'react-native'
 import { useDevice } from '../../hook/useDevice'
 import { timeFormat } from '../../utils/timeFormat'
-import notifee, { AndroidImportance } from '@notifee/react-native'
+
 import { Loading } from '../../components/Loading'
 import { X } from 'phosphor-react-native'
 import { FilterButton } from '../../components/FilterButton'
 import { HumidityCard } from '../../components/HumidityCard'
+import { TemperatureNotification } from '../../utils/temperatureNotification'
+import { HumidityNotification } from '../../utils/humidityNotification'
 
 export function Realtime() {
   const theme = useTheme()
@@ -40,29 +42,6 @@ export function Realtime() {
     )
   })
 
-  async function displayNotifications() {
-    await notifee.requestPermission()
-
-    const channelId = await notifee.createChannel({
-      id: 'Warning',
-      name: 'Temperature',
-      vibration: true,
-      importance: AndroidImportance.HIGH,
-    })
-
-    await notifee.displayNotification({
-      id: '7',
-      title: 'Temperatura próxima do <strong>limite</strong>',
-      body: '<strong>Verificar a câmara de conservação</strong>, temperatura próxima do limite seguro',
-      android: {
-        channelId,
-        pressAction: {
-          id: 'default',
-        },
-      },
-    })
-  }
-
   useEffect(() => {
     // eslint-disable-next-line array-callback-return
     if (filteredData.length !== 0) {
@@ -72,13 +51,12 @@ export function Realtime() {
         filteredData[0].temperature <
           Number(deviceParameters.min_temperature) + 1
       ) {
-        displayNotifications()
-      }
-      if (
+        TemperatureNotification()
+      } else if (
         filteredData[0].humidity > Number(deviceParameters.max_humidity) - 10 ||
         filteredData[0].humidity < Number(deviceParameters.min_humidity) + 10
       ) {
-        displayNotifications()
+        HumidityNotification()
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
