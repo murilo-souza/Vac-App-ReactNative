@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Temperature, Time } from './styles'
+import { ColorDotIdentification, Container, Temperature, Time } from './styles'
 
 interface TemperatureCardProps {
   time: string
@@ -16,12 +16,9 @@ export function TemperatureCard({
 }: TemperatureCardProps) {
   return (
     <Container variant={variant} defaultColor={defaultColor}>
-      <Time variant={variant} defaultColor={defaultColor}>
-        {time}
-      </Time>
-      <Temperature variant={variant} defaultColor={defaultColor}>
-        {temperature.toFixed(2)} °C
-      </Temperature>
+      <Time>{time}</Time>
+      <Temperature>{temperature.toFixed(2)} °C</Temperature>
+      <ColorDotIdentification variant={variant} defaultColor={defaultColor} />
     </Container>
   )
 }

@@ -43,18 +43,45 @@ export const Container = styled.View<CardProps>`
     `}
 `
 
-export const Time = styled.Text<CardProps>`
+export const Time = styled.Text`
   font-size: ${RFValue(20)}px;
   font-family: ${(props) => props.theme.fonts.regular};
 
   color: ${(props) => props.theme.colors.white};
 `
 
-export const Temperature = styled.Text<CardProps>`
+export const Temperature = styled.Text`
   font-size: ${RFValue(20)}px;
   font-family: ${(props) => props.theme.fonts.semiBold};
 
   margin-right: 10px;
 
   color: ${(props) => props.theme.colors.white};
+`
+
+export const ColorDotIdentification = styled.View<CardProps>`
+  position: absolute;
+
+  right: 7px;
+  top: 7px;
+
+  ${({ defaultColor }) =>
+    defaultColor === 'blue' &&
+    css`
+      border: 1px solid ${(props) => props.theme.colors.gray400};
+      background-color: ${(props) => props.theme.colors.blue600};
+    `}
+
+  ${({ defaultColor }) =>
+    defaultColor === 'green' &&
+    css`
+      border: 1px solid ${(props) => props.theme.colors.gray400};
+      background-color: ${(props) => props.theme.colors.green600};
+    `}
+
+
+  width: 30px;
+  height: 30px;
+
+  border-radius: 9999999px;
 `
