@@ -80,8 +80,9 @@ TaskManager.defineTask(TASK_NAME, () => {
                   const parameters: DeviceProperties = snapshot.val()
                   if (
                     filteredDate[0].temperature >
-                      parameters.max_temperature - 1 ||
-                    filteredDate[0].temperature < parameters.min_temperature + 1
+                      Number(parameters.max_temperature) - 1 ||
+                    filteredDate[0].temperature <
+                      Number(parameters.min_temperature) + 1
                   ) {
                     displayNotifications()
                   }

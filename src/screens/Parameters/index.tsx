@@ -16,13 +16,21 @@ import { Alert, ActivityIndicator } from 'react-native'
 import { useTheme } from 'styled-components/native'
 
 export function Parameters() {
-  const { user } = useDevice()
+  const { user, deviceParameters } = useDevice()
   const theme = useTheme()
 
-  const [maxTemperature, setMaxTemperature] = useState('')
-  const [minTemperature, setMinTemperature] = useState('')
-  const [maxHumidity, setMaxHumidity] = useState('')
-  const [minHumidity, setMinHumidity] = useState('')
+  const [maxTemperature, setMaxTemperature] = useState(
+    String(deviceParameters.max_temperature),
+  )
+  const [minTemperature, setMinTemperature] = useState(
+    String(deviceParameters.min_temperature),
+  )
+  const [maxHumidity, setMaxHumidity] = useState(
+    String(deviceParameters.max_humidity),
+  )
+  const [minHumidity, setMinHumidity] = useState(
+    String(deviceParameters.min_humidity),
+  )
   const [isLoading, setIsLoading] = useState(false)
 
   function UpdateParameters() {

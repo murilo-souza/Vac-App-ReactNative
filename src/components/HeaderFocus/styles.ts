@@ -26,18 +26,23 @@ export const Container = styled.View<SizeProps>`
   padding-right: 20px;
   padding-left: 20px;
   padding-bottom: 16px;
-
+`
+export const Wrapper = styled.View`
   align-items: center;
   justify-content: space-between;
 
   flex-direction: row;
 `
-export const Title = styled.Text`
-  font-size: ${RFValue(20)}px;
-  font-family: ${(props) => props.theme.fonts.regular};
 
-  color: ${(props) => props.theme.colors.gray50};
+export const SelectorContainer = styled.View`
+  align-items: center;
+  justify-content: space-between;
+
+  flex-direction: row;
+
+  margin-top: 15px;
 `
+
 export const Flag = styled.Text`
   font-size: ${RFValue(16)}px;
   font-family: ${(props) => props.theme.fonts.regular};
@@ -45,4 +50,11 @@ export const Flag = styled.Text`
   color: ${(props) => props.theme.colors.white};
 
   text-align: center;
+`
+
+export const Title = styled.Text`
+  font-size: ${RFValue(20)}px;
+  font-family: ${(props) => props.theme.fonts.regular};
+
+  color: ${(props) => props.theme.colors.gray50};
 `
