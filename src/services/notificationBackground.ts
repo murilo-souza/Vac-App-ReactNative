@@ -47,7 +47,7 @@ TaskManager.defineTask(TASK_NAME, () => {
               (item: DeviceDataProps) => item.temperatureH !== 85,
             )
             const filteredData5 = filteredData4.filter(
-              (item: DeviceDataProps) => item.temperature !== -127,
+              (item: DeviceDataProps) => item.temperatureH !== -127,
             )
 
             const reverseData = filteredData5.reverse()
