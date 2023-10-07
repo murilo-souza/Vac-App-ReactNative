@@ -86,6 +86,14 @@ TaskManager.defineTask(TASK_NAME, () => {
                   ) {
                     displayNotifications()
                   }
+                  if (
+                    filteredDate[0].humidity >
+                      Number(parameters.max_humidity) - 10 ||
+                    filteredDate[0].humidity <
+                      Number(parameters.min_humidity) + 10
+                  ) {
+                    displayNotifications()
+                  }
                 })
             }
           }

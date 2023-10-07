@@ -19,6 +19,7 @@ import notifee, { AndroidImportance } from '@notifee/react-native'
 import { Loading } from '../../components/Loading'
 import { X } from 'phosphor-react-native'
 import { FilterButton } from '../../components/FilterButton'
+import { HumidityCard } from '../../components/HumidityCard'
 
 export function Realtime() {
   const theme = useTheme()
@@ -73,7 +74,14 @@ export function Realtime() {
       ) {
         displayNotifications()
       }
+      if (
+        filteredData[0].humidity > Number(deviceParameters.max_humidity) - 10 ||
+        filteredData[0].humidity < Number(deviceParameters.min_humidity) + 10
+      ) {
+        displayNotifications()
+      }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filteredData])
 
   if (isLoading && !filteredData) {
@@ -265,14 +273,13 @@ export function Realtime() {
                 keyExtractor={(item) => item.timestamp}
                 renderItem={({ item }) => (
                   <CardContainer>
-                    <TemperatureCard
+                    <HumidityCard
                       temperature={item.humidity}
                       time={timeFormat(item.timestamp)}
-                      defaultColor="green"
                       variant={
-                        item.temperature >
+                        item.humidity >
                           Number(deviceParameters.max_humidity) - 10 ||
-                        item.temperature <
+                        item.humidity <
                           Number(deviceParameters.min_humidity) + 10
                           ? 'problem'
                           : 'normal'

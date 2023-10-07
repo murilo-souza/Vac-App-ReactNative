@@ -19,6 +19,7 @@ import { timeFormat } from '../../utils/timeFormat'
 import { X } from 'phosphor-react-native'
 import { Loading } from '../../components/Loading'
 import { FilterButton } from '../../components/FilterButton'
+import { HumidityCard } from '../../components/HumidityCard'
 
 interface RouteParams {
   selectedDate: Date
@@ -235,14 +236,13 @@ export function TemperatureHistory() {
                 keyExtractor={(item) => item.timestamp}
                 renderItem={({ item }) => (
                   <CardContainer>
-                    <TemperatureCard
+                    <HumidityCard
                       temperature={item.humidity}
                       time={timeFormat(item.timestamp)}
-                      defaultColor="green"
                       variant={
-                        item.temperature >
+                        item.humidity >
                           Number(deviceParameters.max_humidity) - 10 ||
-                        item.temperature <
+                        item.humidity <
                           Number(deviceParameters.min_humidity) + 10
                           ? 'problem'
                           : 'normal'
