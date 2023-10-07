@@ -25,7 +25,7 @@ interface RouteParams {
 
 export function TemperatureHistory() {
   const theme = useTheme()
-  const { deviceData, isLoading, deviceProps } = useDevice()
+  const { deviceData, isLoading, deviceParameters } = useDevice()
 
   const route = useRoute()
   const { selectedDate } = route.params as RouteParams
@@ -82,8 +82,8 @@ export function TemperatureHistory() {
               yAxisInterval={1}
               getDotColor={(value2) =>
                 `${
-                  (value2 > Number(deviceProps.max_temperature) - 1 ||
-                    value2 < Number(deviceProps.min_temperature) + 1) &&
+                  (value2 > Number(deviceParameters.max_temperature) - 1 ||
+                    value2 < Number(deviceParameters.min_temperature) + 1) &&
                   theme.colors.red600
                 }`
               }
@@ -122,8 +122,9 @@ export function TemperatureHistory() {
                   defaultColor="green"
                   variant={
                     item.temperature >
-                      Number(deviceProps.max_temperature) - 1 ||
-                    item.temperature < Number(deviceProps.min_temperature) + 1
+                      Number(deviceParameters.max_temperature) - 1 ||
+                    item.temperature <
+                      Number(deviceParameters.min_temperature) + 1
                       ? 'problem'
                       : 'normal'
                   }
@@ -134,8 +135,9 @@ export function TemperatureHistory() {
                   time={timeFormat(item.timestamp)}
                   variant={
                     item.temperature >
-                      Number(deviceProps.max_temperature) - 1 ||
-                    item.temperature < Number(deviceProps.min_temperature) + 1
+                      Number(deviceParameters.max_temperature) - 1 ||
+                    item.temperature <
+                      Number(deviceParameters.min_temperature) + 1
                       ? 'problem'
                       : 'normal'
                   }

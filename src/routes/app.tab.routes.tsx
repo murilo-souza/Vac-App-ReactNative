@@ -40,6 +40,24 @@ export function AppTabRoutes() {
       }}
     >
       <Screen
+        name="Home"
+        component={HomeStackRoutes}
+        options={{
+          tabBarIcon: ({ color, focused }) => (
+            <>
+              {focused ? (
+                <IconContainer>
+                  <House size={32} color={color} />
+                </IconContainer>
+              ) : (
+                <House size={32} color={color} />
+              )}
+            </>
+          ),
+        }}
+      />
+
+      <Screen
         name="History"
         component={HistoryStackRoutes}
         options={{
@@ -57,23 +75,6 @@ export function AppTabRoutes() {
         }}
       />
 
-      <Screen
-        name="Home"
-        component={HomeStackRoutes}
-        options={{
-          tabBarIcon: ({ color, focused }) => (
-            <>
-              {focused ? (
-                <IconContainer>
-                  <House size={32} color={color} />
-                </IconContainer>
-              ) : (
-                <House size={32} color={color} />
-              )}
-            </>
-          ),
-        }}
-      />
       <Screen
         name="Parameters"
         component={Parameters}

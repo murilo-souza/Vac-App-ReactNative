@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   ButtonContainer,
   ButtonTitle,
@@ -11,9 +11,45 @@ import { HeaderHome } from '../../components/HeaderHome'
 import { StatusBar } from 'expo-status-bar'
 import { Input } from '../../components/Input'
 import { useDevice } from '../../hook/useDevice'
+import database from '@react-native-firebase/database'
+import { Alert, ActivityIndicator } from 'react-native'
+import { useTheme } from 'styled-components/native'
 
 export function Parameters() {
-  const { deviceProps } = useDevice()
+  const { user } = useDevice()
+  const theme = useTheme()
+
+  const [maxTemperature, setMaxTemperature] = useState('')
+  const [minTemperature, setMinTemperature] = useState('')
+  const [maxHumidity, setMaxHumidity] = useState('')
+  const [minHumidity, setMinHumidity] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+
+  function UpdateParameters() {
+    if (!maxTemperature || !minTemperature || !maxHumidity || !minHumidity) {
+      Alert.alert('Erro', 'Todos os campos precisam ser preenchidos')
+    } else {
+      try {
+        setIsLoading(true)
+        database()
+          .ref(`/UsersData/${user.uid}/properties`)
+          .update({
+            max_humidity: maxHumidity,
+            max_temperature: maxTemperature,
+            min_humidity: minHumidity,
+            min_temperature: minTemperature,
+          })
+          .then(() =>
+            Alert.alert('Sucesso', 'Parâmetros atualizados com sucesso'),
+          )
+        setIsLoading(false)
+      } catch (error) {
+        Alert.alert('Erro', 'Não foi possível atualizar os parâmetros')
+        console.log(error)
+        setIsLoading(false)
+      }
+    }
+  }
 
   return (
     <>
@@ -27,28 +63,40 @@ export function Parameters() {
           <Input
             title="Temperatura máxima"
             keyboardType="numeric"
-            value={String(deviceProps.max_temperature)}
+            onChangeText={setMaxTemperature}
+            value={maxTemperature}
+            placeholder="Inserir a temperatura máxima desejada"
           />
           <Input
             title="Temperatura mínima"
             keyboardType="numeric"
-            value={String(deviceProps.min_temperature)}
+            onChangeText={setMinTemperature}
+            value={minTemperature}
+            placeholder="Inserir a temperatura mínima desejada"
           />
 
           <ParametersTitle>Umidade</ParametersTitle>
           <Input
             title="Umidade máxima"
             keyboardType="numeric"
-            value={String(deviceProps.max_humidity)}
+            onChangeText={setMaxHumidity}
+            value={maxHumidity}
+            placeholder="Inserir a umidade máxima desejada"
           />
           <Input
             title="Umidade mínima"
             keyboardType="numeric"
-            value={String(deviceProps.min_humidity)}
+            onChangeText={setMinHumidity}
+            value={minHumidity}
+            placeholder="Inserir a umidade mínima desejada"
           />
 
-          <ButtonContainer>
-            <ButtonTitle>Definir parâmetros</ButtonTitle>
+          <ButtonContainer disabled={isLoading} onPress={UpdateParameters}>
+            {isLoading ? (
+              <ActivityIndicator size="large" color={theme.colors.white} />
+            ) : (
+              <ButtonTitle>Definir parâmetros</ButtonTitle>
+            )}
           </ButtonContainer>
         </Wrapper>
       </Container>

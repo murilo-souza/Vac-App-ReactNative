@@ -16,7 +16,7 @@ interface DeviceDataProps {
   timestamp: string
 }
 
-interface DeviceProperties {
+interface DeviceParameters {
   max_humidity: number | string
   min_humidity: number | string
   max_temperature: number | string
@@ -25,7 +25,7 @@ interface DeviceProperties {
 
 interface DeviceContextData {
   deviceData: DeviceDataProps[]
-  deviceProps: DeviceProperties
+  deviceParameters: DeviceParameters
   isLoading: boolean
   user: FirebaseAuthTypes.User | null
 }
@@ -38,8 +38,8 @@ export const DeviceContext = createContext({} as DeviceContextData)
 
 export function DeviceContextProvider({ children }: ContextProviderProps) {
   const [deviceData, setDeviceData] = useState<DeviceDataProps[]>([])
-  const [deviceProps, setDeviceProps] = useState<DeviceProperties>(
-    {} as DeviceProperties,
+  const [deviceParameters, setDeviceParameters] = useState<DeviceParameters>(
+    {} as DeviceParameters,
   )
   const [isLoading, setIsLoading] = useState(false)
   const [user, setUser] = useState<FirebaseAuthTypes.User | null>()
@@ -79,14 +79,14 @@ export function DeviceContextProvider({ children }: ContextProviderProps) {
       database()
         .ref(`/UsersData/${user.uid}/properties`)
         .on('value', (snapshot) => {
-          setDeviceProps(snapshot.val())
+          setDeviceParameters(snapshot.val())
         })
     }
   }, [user])
 
   return (
     <DeviceContext.Provider
-      value={{ deviceData, deviceProps, isLoading, user }}
+      value={{ deviceData, deviceParameters, isLoading, user }}
     >
       {children}
     </DeviceContext.Provider>
