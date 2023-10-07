@@ -35,22 +35,17 @@ TaskManager.defineTask(TASK_NAME, () => {
               return data
             })
             const filteredData = dataArray.filter(
-              (item: DeviceDataProps) => item.temperature !== 85,
+              (item: DeviceDataProps) =>
+                item.temperature !== 85 &&
+                item.temperatureH !== 85 &&
+                item.temperature !== -127 &&
+                item.temperatureH !== -127,
             )
             const filteredData2 = filteredData.filter(
-              (item: DeviceDataProps) => item.temperature !== -127,
-            )
-            const filteredData3 = filteredData2.filter(
               (item: DeviceDataProps) => item.humidity !== -1.2147483647,
             )
-            const filteredData4 = filteredData3.filter(
-              (item: DeviceDataProps) => item.temperatureH !== 85,
-            )
-            const filteredData5 = filteredData4.filter(
-              (item: DeviceDataProps) => item.temperatureH !== -127,
-            )
 
-            const reverseData = filteredData5.reverse()
+            const reverseData = filteredData2.reverse()
             const currentDate = new Date(Date.now())
             const filteredDate = reverseData.filter((item) => {
               const timestampNumber = parseInt(item.timestamp, 10)
