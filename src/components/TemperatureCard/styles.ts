@@ -68,14 +68,12 @@ export const ColorDotIdentification = styled.View<CardProps>`
   ${({ defaultColor }) =>
     defaultColor === 'blue' &&
     css`
-      border: 1px solid ${(props) => props.theme.colors.gray400};
       background-color: ${(props) => props.theme.colors.blue600};
     `}
 
   ${({ defaultColor }) =>
     defaultColor === 'green' &&
     css`
-      border: 1px solid ${(props) => props.theme.colors.gray400};
       background-color: ${(props) => props.theme.colors.green600};
     `}
 
