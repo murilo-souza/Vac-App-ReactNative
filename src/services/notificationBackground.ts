@@ -68,14 +68,18 @@ TaskManager.defineTask(TASK_NAME, () => {
                       Number(parameters.min_temperature) + 1
                   ) {
                     TemperatureNotification()
-                  }
-                  if (
+                  } else if (
                     filteredDate[0].humidity >
                       Number(parameters.max_humidity) - 10 ||
                     filteredDate[0].humidity <
                       Number(parameters.min_humidity) + 10
                   ) {
                     HumidityNotification()
+                  } else if (
+                    filteredData[0].temperature - filteredDate[1].temperature >
+                    0.5
+                  ) {
+                    TemperatureNotification()
                   }
                 })
             }
