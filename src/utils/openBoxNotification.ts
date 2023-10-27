@@ -1,6 +1,6 @@
 import notifee, { AndroidImportance } from '@notifee/react-native'
 
-export async function TemperatureNotification() {
+export async function OpenBoxNotification() {
   await notifee.requestPermission()
 
   const channelId = await notifee.createChannel({
@@ -11,12 +11,12 @@ export async function TemperatureNotification() {
   })
 
   await notifee.displayNotification({
-    id: '7',
-    title: 'Temperatura próxima do <strong>limite</strong>',
-    body: '<strong>Verificar a câmara de conservação</strong>, temperatura próxima do limite seguro',
+    id: '9',
+    title: 'A camara de conservação está <strong>ABERTA</strong>',
+    body: '<strong>Verificar a câmara de conservação</strong>, ela consta como <strong>ABERTA</strong> ',
     android: {
-      channelId,
       groupId: '123',
+      channelId,
       pressAction: {
         id: 'default',
       },

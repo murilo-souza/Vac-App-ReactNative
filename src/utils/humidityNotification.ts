@@ -4,18 +4,19 @@ export async function HumidityNotification() {
   await notifee.requestPermission()
 
   const channelId = await notifee.createChannel({
-    id: 'Warning Humidity',
-    name: 'Humidity',
+    id: 'Warning',
+    name: 'Problem in the box',
     vibration: true,
     importance: AndroidImportance.HIGH,
   })
 
   await notifee.displayNotification({
     id: '8',
-    title: 'Umidade próxima do <strong>limite</strong>',
-    body: '<strong>Verificar a câmara de conservação</strong>, umidade próxima do limite seguro',
+    title: 'Variação <strong>incomum</strong> nos dados de umidade',
+    body: '<strong>Verificar a câmara de conservação</strong>, variação <strong>incomum</strong> nos dados de umidade',
     android: {
       channelId,
+      groupId: '123',
       pressAction: {
         id: 'default',
       },

@@ -4,10 +4,12 @@ import database from '@react-native-firebase/database'
 import auth from '@react-native-firebase/auth'
 import { TemperatureNotification } from '../utils/temperatureNotification'
 import { HumidityNotification } from '../utils/humidityNotification'
+import { OpenBoxNotification } from '../utils/openBoxNotification'
 
 const TASK_NAME = 'SEND_NOTIFICATION'
 
 interface DeviceDataProps {
+  distance: number
   humidity: number
   temperature: number
   temperatureH: number
@@ -76,10 +78,12 @@ TaskManager.defineTask(TASK_NAME, () => {
                   ) {
                     HumidityNotification()
                   } else if (
-                    filteredData[0].temperature - filteredDate[1].temperature >
+                    filteredDate[0].temperature - filteredDate[1].temperature >
                     0.5
                   ) {
                     TemperatureNotification()
+                  } else if (filteredDate[0].distance > 4) {
+                    OpenBoxNotification()
                   }
                 })
             }

@@ -22,11 +22,11 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#2563EB"
       },
-      "package": "com.murilosouza232.vac",
+      "package": "com.murilosouza333.vac",
       "googleServicesFile": "./google-services.json"
     },
     "ios": {
-      "bundleIdentifier": "com.murilosouza232.vac",
+      "bundleIdentifier": "com.murilosouza333.vac",
       "googleServicesFile": "./GoogleService-Info.plist",
       "runtimeVersion": {
         "policy": "sdkVersion"

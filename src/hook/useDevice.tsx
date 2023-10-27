@@ -10,6 +10,7 @@ import database from '@react-native-firebase/database'
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth'
 
 interface DeviceDataProps {
+  distance: number
   humidity: number
   temperature: number
   temperatureH: number
