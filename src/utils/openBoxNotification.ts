@@ -15,7 +15,6 @@ export async function OpenBoxNotification() {
     title: 'A camara de conservação está <strong>ABERTA</strong>',
     body: '<strong>Verificar a câmara de conservação</strong>, ela consta como <strong>ABERTA</strong> ',
     android: {
-      groupId: '123',
       channelId,
       pressAction: {
         id: 'default',

@@ -16,7 +16,6 @@ export async function TemperatureNotification() {
     body: '<strong>Verificar a câmara de conservação</strong>, temperatura próxima do limite seguro',
     android: {
       channelId,
-      groupId: '123',
       pressAction: {
         id: 'default',
       },

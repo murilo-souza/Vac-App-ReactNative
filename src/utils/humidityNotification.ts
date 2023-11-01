@@ -12,11 +12,10 @@ export async function HumidityNotification() {
 
   await notifee.displayNotification({
     id: '8',
-    title: 'Variação <strong>incomum</strong> nos dados de umidade',
-    body: '<strong>Verificar a câmara de conservação</strong>, variação <strong>incomum</strong> nos dados de umidade',
+    title: 'Umidade próxima do <strong>limite</strong>',
+    body: '<strong>Verificar a câmara de conservação</strong>, umidade próxima do limite seguro',
     android: {
       channelId,
-      groupId: '123',
       pressAction: {
         id: 'default',
       },
