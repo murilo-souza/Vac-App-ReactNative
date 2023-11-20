@@ -47,9 +47,9 @@ export function Realtime() {
     if (filteredData.length !== 0) {
       if (
         filteredData[0].temperature >
-          Number(deviceParameters.max_temperature) - 1 ||
+          Number(deviceParameters.max_temperature) - 1.5 ||
         filteredData[0].temperature <
-          Number(deviceParameters.min_temperature) + 1
+          Number(deviceParameters.min_temperature) + 1.5
       ) {
         TemperatureNotification()
       } else if (
@@ -170,9 +170,9 @@ export function Realtime() {
                       time={timeFormat(item.timestamp)}
                       variant={
                         item.temperature >
-                          Number(deviceParameters.max_temperature) - 1 ||
+                          Number(deviceParameters.max_temperature) - 1.5 ||
                         item.temperature <
-                          Number(deviceParameters.min_temperature) + 1
+                          Number(deviceParameters.min_temperature) + 1.5
                           ? 'problem'
                           : 'normal'
                       }
