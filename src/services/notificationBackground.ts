@@ -97,7 +97,7 @@ TaskManager.defineTask(TASK_NAME, () => {
 
 export function RegisterTask() {
   return BackgroundFetch.registerTaskAsync(TASK_NAME, {
-    minimumInterval: 60,
+    minimumInterval: 20,
     stopOnTerminate: false,
   })
 }
